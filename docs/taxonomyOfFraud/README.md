@@ -1,2 +1,2 @@
 # **Taxonomie des fraudes couvertes**<a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
-<a href="#"><img src="../../static/taxonomyOfFraud2026.png"></a> 
+<a href="#"><img src="../../assets/images/infographics/taxonomyOfFraud2026.webp"></a> 

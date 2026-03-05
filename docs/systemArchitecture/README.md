@@ -1,2 +1,2 @@
-<h1><b>Architecture Souveraine de Détection de Fraude à haute fréquence</b><a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>/h1>
-<a href="../../"><img src="../../static/infography.png"></a>
+<h1><b>Architecture Souveraine de Détection de Fraude à haute fréquence</b><a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a></h1>
+<a href="../../"><img src="../../assets/images/infographics/infography.webp"></a>

@@ -1,2 +1,2 @@
-<h1><b>Infrastructure de conformité ➜ Gouvernance Algorithmique et Résilience Transactionnelle</b><a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>/h1>
-<a href="#"><img src="../../static/complianceInfrastructure.png"></a>
+<h1><b>Infrastructure de conformité ➜ Gouvernance Algorithmique et Résilience Transactionnelle</b><a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a></h1>
+<a href="#"><img src="../../assets/images/infographics/complianceInfrastructure.webp"></a>
