@@ -1,0 +1,399 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    LICENCE PROPRIÉTAIRE DE LOGICIEL
+            LINCEUL-AUDIT (Nom de code interne : "Velum-audit")
+═══════════════════════════════════════════════════════════════════════════════
+
+Version 1.0 | Date d'entrée en vigueur : 22 janvier 2026
+Juridiction applicable : République Française & Union Européenne
+
+═══════════════════════════════════════════════════════════════════════════════
+                           I. DÉFINITIONS JURIDIQUES
+═══════════════════════════════════════════════════════════════════════════════
+
+Aux fins de la présente licence, les termes suivants revêtent les acceptions
+ci-après définies :
+
+1.1 « Logiciel » désigne l'ensemble indivisible constitué par :
+    a) Le code source, qu'il soit exprimé en langage Java, Python, SQL, ou tout
+       autre langage de programmation, sous quelque forme que ce soit ;
+    b) Le code objet compilé, les fichiers binaires et exécutables ;
+    c) Les architectures logicielles, patterns de conception, algorithmes,
+       structures de données, et méthodologies d'implémentation ;
+    d) Les modèles d'apprentissage automatique (fichiers ONNX, poids synaptiques,
+       hyperparamètres, architectures neuronales) ;
+    e) Les bases de données, schémas relationnels, index vectoriels, et toute
+       structure de persistance ;
+    f) La documentation technique, spécifications fonctionnelles, diagrammes
+       architecturaux, et commentaires de code ;
+    g) Les configurations système, scripts de déploiement, manifestes
+       Kubernetes, et fichiers d'orchestration ;
+    h) Les actifs visuels, interfaces utilisateur, maquettes, et éléments de
+       design ;
+    i) Toute œuvre dérivée, modification, amélioration, ou extension des
+       éléments précités.
+
+1.2 « Titulaire » désigne Mickaël GAILLARD, résidant à Amiens (80000),
+    Hauts-de-France, République Française, auteur et propriétaire exclusif des
+    droits de propriété intellectuelle afférents au Logiciel.
+
+1.3 « Utilisateur » ou « Vous » désigne toute personne physique ou morale,
+    entité juridique, ou organisation accédant, consultant, téléchargeant,
+    clonant, ou entrant en contact avec le Logiciel, que ce soit de manière
+    directe ou indirecte, intentionnelle ou fortuite.
+
+1.4 « Propriété Intellectuelle » englobe exhaustivement :
+    a) Les droits d'auteur (Code de la Propriété Intellectuelle, articles
+       L.111-1 et suivants) ;
+    b) Les droits sui generis sur les bases de données (Directive 96/9/CE,
+       transposée aux articles L.341-1 et suivants du CPI) ;
+    c) Les brevets et demandes de brevets relatifs aux inventions mises en
+       œuvre ;
+    d) Les secrets d'affaires et savoir-faire (Directive UE 2016/943) ;
+    e) Les droits moraux imprescriptibles et inaliénables de l'auteur (article
+       L.121-1 du CPI) ;
+    f) Les droits voisins et droits connexes.
+
+1.5 « Reproduction » désigne toute fixation matérielle ou immatérielle du
+    Logiciel permettant sa communication au public, incluant sans limitation :
+    copie, duplication, téléchargement, clonage de dépôt, fork, capture
+    d'écran, transcription, extraction de fragments.
+
+1.6 « Adaptation » désigne toute transformation, modification, traduction,
+    arrangement, ou dérivation du Logiciel, incluant sans limitation : le
+    reverse engineering, la décompilation, le désassemblage, l'analyse
+    statique ou dynamique, l'ingénierie inverse, le refactoring, la
+    réimplémentation conceptuelle.
+
+1.7 « Usage Commercial » désigne toute exploitation, directe ou indirecte,
+    générant ou susceptible de générer des revenus, des avantages économiques,
+    ou une valorisation patrimoniale, incluant sans limitation : la vente, la
+    location, la concession de licence, l'intégration dans un produit ou
+    service commercialisé, l'utilisation dans le cadre d'activités lucratives.
+
+1.8 « Données Personnelles » s'entend au sens de l'article 4(1) du Règlement
+    (UE) 2016/679 (RGPD).
+
+═══════════════════════════════════════════════════════════════════════════════
+                      II. DÉCLARATION DE PROPRIÉTÉ
+═══════════════════════════════════════════════════════════════════════════════
+
+2.1 TITULARITÉ EXCLUSIVE
+    Le Logiciel constitue une œuvre de l'esprit originale au sens de l'article
+    L.111-1 du Code de la Propriété Intellectuelle. Le Titulaire détient
+    l'intégralité des droits patrimoniaux et moraux y afférents, sans aucune
+    cession, transfert, ou concession de quelque nature que ce soit.
+
+2.2 PROTECTION MULTILATÉRALE
+    Le Logiciel bénéficie de la protection conférée par :
+    a) La Convention de Berne pour la protection des œuvres littéraires et
+       artistiques (1886, révisée) ;
+    b) Le Traité de l'OMPI sur le droit d'auteur (WCT, 1996) ;
+    c) La Directive 2009/24/CE concernant la protection juridique des
+       programmes d'ordinateur ;
+    d) Le Code de la Propriété Intellectuelle français ;
+    e) Toute législation nationale applicable dans les États membres de l'UE.
+
+2.3 SECRETS D'AFFAIRES
+    Les algorithmes, architectures neuro-symboliques, méthodologies de
+    détection de fraude, et savoir-faire techniques incorporés dans le
+    Logiciel constituent des secrets d'affaires protégés conformément à la
+    Directive (UE) 2016/943 et à la loi n°2018-670 du 30 juillet 2018.
+
+═══════════════════════════════════════════════════════════════════════════════
+                    III. INTERDICTIONS ABSOLUES
+═══════════════════════════════════════════════════════════════════════════════
+
+3.1 INTERDICTION DE REPRODUCTION
+    Toute Reproduction du Logiciel, totale ou partielle, sous quelque forme et
+    par quelque procédé que ce soit, est formellement prohibée sans
+    autorisation écrite préalable et expresse du Titulaire, sous peine de
+    poursuites pour contrefaçon conformément aux articles L.335-2 et suivants
+    du CPI (sanctions pénales : jusqu'à 3 ans d'emprisonnement et 300 000 €
+    d'amende).
+
+3.2 INTERDICTION D'ADAPTATION
+    Toute Adaptation, modification, traduction, ou création d'œuvre dérivée
+    est strictement interdite. Cette prohibition inclut expressément :
+    a) La décompilation et le reverse engineering (sauf exceptions limitées de
+       l'article L.122-6-1 IV du CPI, non applicables en l'espèce) ;
+    b) L'extraction et la réutilisation de portions substantielles du code ;
+    c) La réimplémentation des concepts architecturaux ou algorithmiques ;
+    d) L'analyse par apprentissage automatique (machine learning on code) pour
+       reproduire les fonctionnalités.
+
+3.3 INTERDICTION D'USAGE COMMERCIAL
+    Tout Usage Commercial est prohibé sans accord de licence commerciale
+    distinct, négocié individuellement avec le Titulaire.
+
+3.4 INTERDICTION DE DIFFUSION
+    La mise à disposition du public, la distribution, la communication, la
+    publication, ou le partage du Logiciel, en tout ou partie, par quelque
+    moyen que ce soit (internet, réseaux privés, supports physiques, API,
+    services cloud), est strictement interdite.
+
+3.5 INTERDICTION D'UTILISATION NON AUTORISÉE
+    L'exécution, le déploiement, l'instanciation, ou toute forme d'utilisation
+    fonctionnelle du Logiciel est réservée exclusivement au Titulaire et aux
+    bénéficiaires d'une licence d'utilisation explicite.
+
+═══════════════════════════════════════════════════════════════════════════════
+             IV. DROITS LIMITÉS DE CONSULTATION (Régime dérogatoire)
+═══════════════════════════════════════════════════════════════════════════════
+
+4.1 DROIT DE LECTURE PASSIVE
+    Dans le cadre strict de la consultation du dépôt public GitHub, Vous êtes
+    autorisé à :
+    a) Lire le code source et la documentation à des fins d'information
+       personnelle, non commerciale, et sans extraction ;
+    b) Naviguer dans l'arborescence des fichiers via l'interface web GitHub ;
+    c) Consulter l'historique des commits et les métadonnées publiques.
+
+4.2 LIMITATIONS IMPÉRATIVES
+    Cette autorisation de lecture est assortie des restrictions suivantes :
+    a) Interdiction de clonage (git clone), fork, ou téléchargement local ;
+    b) Interdiction de capture, sauvegarde, ou archivage du code ;
+    c) Interdiction d'utilisation des connaissances acquises pour développer
+       des solutions concurrentes ou similaires ;
+    d) Interdiction de citation ou référencement académique sans accord écrit.
+
+4.3 RÉVOCABILITÉ
+    Le Titulaire se réserve le droit de révoquer unilatéralement et sans
+    préavis cette autorisation de consultation en rendant le dépôt privé ou en
+    modifiant les conditions d'accès.
+
+═══════════════════════════════════════════════════════════════════════════════
+                V. CONFORMITÉ RÉGLEMENTAIRE ET ÉTHIQUE
+═══════════════════════════════════════════════════════════════════════════════
+
+5.1 RGPD ET PROTECTION DES DONNÉES
+    Le Logiciel traite des données transactionnelles susceptibles de contenir
+    des Données Personnelles. Toute utilisation non autorisée constituerait :
+    a) Une violation du RGPD (Règlement UE 2016/679), exposant à des sanctions
+       administratives pouvant atteindre 20 millions € ou 4% du CA mondial
+       (article 83) ;
+    b) Une infraction pénale au sens de l'article 226-16 du Code pénal
+       (atteinte aux systèmes de traitement automatisé de données).
+
+5.2 AI ACT (RÈGLEMENT UE 2024/1689)
+    Le Logiciel constitue un système d'IA à finalité de détection de fraude
+    financière, bénéficiant de l'exemption prévue à l'Annexe III, point 5(b)
+    du Règlement sur l'Intelligence Artificielle. Toute utilisation détournée
+    à des fins de scoring de crédit ou d'évaluation de solvabilité
+    constituerait :
+    a) Un détournement de finalité prohibé ;
+    b) Une classification comme système d'IA à haut risque nécessitant
+       conformité stricte aux articles 8 à 15 du Règlement.
+
+5.3 LUTTE CONTRE LE BLANCHIMENT (CMF L561-15)
+    Le Logiciel génère des pré-déclarations de soupçon destinées à Tracfin.
+    Toute utilisation compromettant l'intégrité de ce processus constituerait
+    une complicité d'infraction de blanchiment (articles L.561-22 et suivants
+    du Code monétaire et financier).
+
+5.4 SÉCURITÉ DES SYSTÈMES D'INFORMATION
+    Toute tentative d'accès non autorisé, d'altération, ou de perturbation du
+    Logiciel est passible de poursuites au titre de :
+    a) L'article 323-1 du Code pénal (accès frauduleux à un STAD : jusqu'à 2
+       ans d'emprisonnement et 60 000 € d'amende) ;
+    b) La Directive NIS 2 (UE 2022/2555) si déploiement en infrastructure
+       critique.
+
+═══════════════════════════════════════════════════════════════════════════════
+                     VI. SANCTIONS ET VOIES DE RECOURS
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1 SANCTIONS CIVILES
+    Toute violation de la présente licence expose le contrevenant à :
+    a) Une action en contrefaçon devant le Tribunal judiciaire de Paris
+       (juridiction spécialisée en propriété intellectuelle) ;
+    b) Des dommages-intérêts compensatoires et, le cas échéant, punitifs,
+       calculés selon l'article L.331-1-3 du CPI ;
+    c) Une injonction de cessation immédiate sous astreinte ;
+    d) La publication du jugement aux frais du contrevenant (article L.331-1-4
+       du CPI) ;
+    e) La saisie-contrefaçon conservatoire (articles L.332-1 et suivants du
+       CPI).
+
+6.2 SANCTIONS PÉNALES
+    Outre les sanctions civiles, les infractions caractérisées peuvent donner
+    lieu à des poursuites pénales pour :
+    a) Contrefaçon (articles L.335-2 à L.335-4 du CPI) ;
+    b) Violation du secret des affaires (article L.151-8 du Code de commerce :
+       jusqu'à 5 ans d'emprisonnement et 500 000 € d'amende pour les
+       personnes physiques, 2,5 millions € pour les personnes morales) ;
+    c) Atteinte aux systèmes de traitement automatisé de données (article
+       323-1 et suivants du Code pénal).
+
+6.3 RÉCUPÉRATION DES FRAIS JURIDIQUES
+    En cas de condamnation, le contrevenant supportera l'intégralité des frais
+    de justice, honoraires d'avocats, frais d'expertise, et coûts annexes
+    engagés par le Titulaire.
+
+6.4 PROCÉDURE ACCÉLÉRÉE
+    Le Titulaire se réserve le droit de solliciter des mesures d'urgence en
+    référé (articles 834 et suivants du CPC) pour faire cesser immédiatement
+    toute atteinte manifeste à ses droits.
+
+═══════════════════════════════════════════════════════════════════════════════
+                    VII. LICENCES COMMERCIALES DISPONIBLES
+═══════════════════════════════════════════════════════════════════════════════
+
+7.1 TYPOLOGIE DES LICENCES
+    Pour tout usage non couvert par la présente licence, des licences
+    commerciales sont disponibles sur demande :
+    a) Licence d'évaluation technique (POC) : 30 jours, environnement sandbox ;
+    b) Licence d'utilisation entreprise : déploiement production, support
+       technique inclus ;
+    c) Licence OEM : intégration dans des solutions tierces ;
+    d) Licence académique : recherche et enseignement dans les établissements
+       agréés.
+
+7.2 PROCÉDURE DE DEMANDE
+    Toute demande de licence doit être adressée par écrit à :
+    📧 Email : miklgaillard@gmail.com
+    📍 Adresse postale : [À compléter si nécessaire]
+    
+    La demande devra préciser :
+    - L'identité complète du demandeur (SIRET pour les entreprises) ;
+    - La finalité d'utilisation envisagée ;
+    - Le périmètre géographique et temporel souhaité ;
+    - Le volume d'utilisateurs ou de transactions prévisionnels.
+
+═══════════════════════════════════════════════════════════════════════════════
+              VIII. EXCLUSION DE GARANTIE ET LIMITATION DE RESPONSABILITÉ
+═══════════════════════════════════════════════════════════════════════════════
+
+8.1 FOURNITURE EN L'ÉTAT
+    LE LOGICIEL EST FOURNI "TEL QUEL" ("AS IS"), SANS GARANTIE D'AUCUNE SORTE,
+    EXPRESSE OU IMPLICITE, Y COMPRIS, SANS LIMITATION, LES GARANTIES IMPLICITES
+    DE QUALITÉ MARCHANDE, D'ADÉQUATION À UN USAGE PARTICULIER, OU D'ABSENCE DE
+    CONTREFAÇON.
+
+8.2 EXCLUSION DE RESPONSABILITÉ
+    EN AUCUN CAS LE TITULAIRE NE POURRA ÊTRE TENU RESPONSABLE DE DOMMAGES
+    DIRECTS, INDIRECTS, ACCESSOIRES, SPÉCIAUX, EXEMPLAIRES, OU CONSÉCUTIFS
+    (Y COMPRIS, SANS LIMITATION, LA PERTE DE PROFITS, L'INTERRUPTION
+    D'ACTIVITÉ, LA PERTE DE DONNÉES) RÉSULTANT DE L'UTILISATION AUTORISÉE OU
+    NON AUTORISÉE DU LOGICIEL, MÊME SI LE TITULAIRE A ÉTÉ AVISÉ DE LA
+    POSSIBILITÉ DE TELS DOMMAGES.
+
+8.3 LIMITATIONS LÉGALES
+    Les exclusions ci-dessus sont applicables dans la mesure maximale permise
+    par la loi. Elles ne sauraient exclure la responsabilité en cas de faute
+    lourde ou de dol, conformément à l'article 1231-3 du Code civil.
+
+═══════════════════════════════════════════════════════════════════════════════
+                    IX. DISPOSITIONS GÉNÉRALES
+═══════════════════════════════════════════════════════════════════════════════
+
+9.1 LOI APPLICABLE
+    La présente licence est régie par le droit français, à l'exclusion de
+    toute autre législation. Les conventions internationales (Convention de
+    Vienne sur la vente internationale de marchandises) sont expressément
+    écartées.
+
+9.2 JURIDICTION COMPÉTENTE
+    Tout litige relatif à la validité, l'interprétation, ou l'exécution de la
+    présente licence relève de la compétence EXCLUSIVE du Tribunal judiciaire
+    de Paris, y compris en cas de référé ou de pluralité de défendeurs.
+
+9.3 DIVISIBILITÉ
+    Si une disposition de la présente licence est déclarée invalide, illégale,
+    ou inapplicable par une juridiction compétente, les autres dispositions
+    conserveront leur pleine force et effet. La disposition invalidée sera
+    remplacée par une clause valide s'en rapprochant le plus possible.
+
+9.4 INTÉGRALITÉ DE L'ACCORD
+    La présente licence constitue l'intégralité de l'accord entre le Titulaire
+    et l'Utilisateur concernant le Logiciel, et remplace tous accords,
+    représentations, ou communications antérieurs, écrits ou oraux.
+
+9.5 MODIFICATION
+    Le Titulaire se réserve le droit de modifier unilatéralement les termes de
+    la présente licence. Les modifications entreront en vigueur dès leur
+    publication dans le dépôt GitHub, la date du commit faisant foi.
+
+9.6 RENONCIATION
+    L'absence d'exercice ou le retard dans l'exercice d'un droit par le
+    Titulaire ne saurait constituer une renonciation audit droit. Aucune
+    renonciation ne sera valable si elle n'est pas écrite et signée par le
+    Titulaire.
+
+9.7 CESSION
+    L'Utilisateur ne peut céder, transférer, ou sous-licencier aucun droit ou
+    obligation découlant de la présente licence sans le consentement écrit
+    préalable du Titulaire. Toute tentative de cession non autorisée sera
+    nulle et non avenue.
+
+9.8 FORCE MAJEURE
+    Le Titulaire ne saurait être tenu responsable de tout manquement à ses
+    obligations résultant d'un événement de force majeure au sens de l'article
+    1218 du Code civil.
+
+9.9 LANGUE CONTRACTUELLE
+    La version française de la présente licence fait foi. En cas de traduction,
+    la version française prévaudra en cas de divergence d'interprétation.
+
+═══════════════════════════════════════════════════════════════════════════════
+                         X. ACCEPTATION
+═══════════════════════════════════════════════════════════════════════════════
+
+EN ACCÉDANT AU LOGICIEL, EN LE CONSULTANT, EN LE TÉLÉCHARGEANT, OU EN
+L'UTILISANT DE QUELQUE MANIÈRE QUE CE SOIT, VOUS RECONNAISSEZ AVOIR LU,
+COMPRIS, ET ACCEPTÉ LES TERMES DE LA PRÉSENTE LICENCE DANS LEUR INTÉGRALITÉ.
+
+VOUS RECONNAISSEZ ÉGALEMENT AVOIR LA CAPACITÉ JURIDIQUE DE CONTRACTER ET,
+LE CAS ÉCHÉANT, AVOIR OBTENU TOUS LES POUVOIRS ET AUTORISATIONS NÉCESSAIRES
+POUR ENGAGER L'ENTITÉ QUE VOUS REPRÉSENTEZ.
+
+SI VOUS N'ACCEPTEZ PAS CES TERMES, VOUS DEVEZ IMMÉDIATEMENT CESSER TOUT ACCÈS
+AU LOGICIEL ET DÉTRUIRE TOUTE COPIE EN VOTRE POSSESSION.
+
+═══════════════════════════════════════════════════════════════════════════════
+                    XI. MENTIONS LÉGALES COMPLÉMENTAIRES
+═══════════════════════════════════════════════════════════════════════════════
+
+11.1 DÉCLARATION DE CONFORMITÉ
+     Le Logiciel est développé en conformité avec :
+     • Règlement (UE) 2016/679 (RGPD)
+     • Règlement (UE) 2024/1689 (AI Act)
+     • Directive (UE) 2015/2366 (DSP2)
+     • Directive (UE) 2016/943 (Secrets d'affaires)
+     • Code de la Propriété Intellectuelle français
+     • Code Monétaire et Financier français
+     • Norme ISO/IEC 42001:2023 (Système de management de l'IA)
+     • Norme NF Z42-013 (Archivage électronique)
+
+11.2 AUDIT ET CERTIFICATION
+     Le Titulaire se réserve le droit de soumettre le Logiciel à des audits de
+     conformité réglementaire et de sécurité par des organismes tiers agréés.
+     Les résultats de ces audits restent confidentiels sauf obligation légale.
+
+11.3 EXPORT CONTROL
+     Le Logiciel peut être soumis à des réglementations sur le contrôle des
+     exportations, notamment :
+     • Règlement (UE) 2021/821 (Dual-use)
+     • Export Administration Regulations (EAR) américaines
+     
+     L'Utilisateur s'engage à respecter toutes les lois applicables en matière
+     de contrôle des exportations.
+
+11.4 CONTACT JURIDIQUE
+     Pour toute question juridique relative à la présente licence :
+     📧 Email : miklgaillard@gmail.com
+     📱 GitHub : https://github.com/MiKL5
+
+═══════════════════════════════════════════════════════════════════════════════
+
+© 2026 Mickaël GAILLARD. Tous droits réservés.
+Linceul-Audit™ est une marque déposée.
+
+Ce document constitue un acte juridique officiel. Il est recommandé de
+consulter un avocat spécialisé en propriété intellectuelle avant toute action
+susceptible d'engager votre responsabilité.
+
+Dernière modification : 22 janvier 2026
+Version : 1.0.0
+Hash SHA-256 : [À générer après signature]
+
+═══════════════════════════════════════════════════════════════════════════════
