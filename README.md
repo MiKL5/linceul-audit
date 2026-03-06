@@ -86,7 +86,7 @@ Contrairement aux architectures Java 21 (2023), Linceul Audit n'a plus besoin de
 J'utilise l'API Foreign Function & Memory (stable) pour appeler le moteur ONNX. Cela permet de passer des pointeurs mémoire off-heap directement de Java à C++ sans copie coûteuse et sans bloquer les Virtual Threads.
 
 ## **📂 Structure du Projet**
-```py
+```sh
 linceul-audit/
 │
 ├── assets/                                # Ressources visuelles
