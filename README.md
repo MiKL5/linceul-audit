@@ -1,5 +1,6 @@
-# **LINCEUL-AUDIT**<a href="https://github.com/mikl5/"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
-Linceul-Audit est un écosystème d'ingénierie forensique neuro-symbolique industrialisé. Il est conçu pour l'audit exhaustif et la détection de fraudes financières complexes par la corrélation de flux ISO 20022 et de données non structurées. Cela garantit une explicabilité et une immuabilité conformes aux standards réglementaires internationaux.
+<h1 align="center"><b>LINCEUL-AUDIT</b><a href="https://github.com/mikl5/"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a></h1>
+
+**Linceul-Audit** est un écosystème d'ingénierie forensique neuro-symbolique industrialisé. Il est conçu pour l'audit exhaustif et la détection de fraudes financières complexes par la corrélation de flux ISO 20022 et de données non structurées. Cela garantit une explicabilité et une immuabilité conformes aux standards réglementaires internationaux.
 ---
 
 <div align="center">
@@ -85,7 +86,7 @@ Contrairement aux architectures Java 21 (2023), Linceul Audit n'a plus besoin de
 J'utilise l'API Foreign Function & Memory (stable) pour appeler le moteur ONNX. Cela permet de passer des pointeurs mémoire off-heap directement de Java à C++ sans copie coûteuse et sans bloquer les Virtual Threads.
 
 ## **📂 Structure du Projet**
-```
+```py
 linceul-audit/
 │
 ├── assets/                                # Ressources visuelles
@@ -94,7 +95,7 @@ linceul-audit/
 │       ├── infographics/
 │       └── logo/
 │
-├── docs/                                 # Documentation exhaustive
+├── docs/                                 # Documentation
 │   ├── architecture/
 │   ├── complianceInfrastructure/
 │   ├── decisionThreshold/
@@ -109,21 +110,21 @@ linceul-audit/
 │   ├── typeOfFraud/
 │   └── README.md
 │
-├── data/                          # Ignoré — géré par DVC
-│   ├── raw/                       # Données brutes ISO 20022 / Core Banking
-│   ├── processed/                 # Après nettoyage + imputation (US-03)
-│   └── features/                  # Features engineerées — input modèle
+├── data/                                 # Ignoré — géré par DVC
+│   ├── raw/                              # Données brutes ISO 20022 / Core Banking
+│   ├── processed/                        # Après nettoyage + imputation (US-03)
+│   └── features/                         # Features engineerées — input modèle
 │
 ├── tests/
 │   └── fixtures/
-│       └── golden_dataset/        # Git LFS — synthétique, anonymisé (US-06)
+│       └── golden_dataset/                # Git LFS — synthétique, anonymisé (US-06)
 │
 ├── monitoring/
-│   └── drift_baseline/            # Git — JSON léger, statistiques de référence (US-15)
+│   └── drift_baseline/                    # Git — JSON léger, statistiques de référence (US-15)
 │
-├── factory/                               # À créer - 🏭 L'Usine — Java 25 / Spring Boot 3.4+
+├── factory/                               # À venir - 🏭 L'Usine — Java 25 / Spring Boot 3.4+
 │
-├── laboratory/                            # À créer - 🧪 Le Laboratoire — Python 3.13 / Data Science
+├── laboratory/                            # À venir - 🧪 Le Laboratoire — Python 3.13 / Data Science
 │
 ├── CONTRIBUTING.md
 ├── LICENSE
