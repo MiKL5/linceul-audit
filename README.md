@@ -94,7 +94,9 @@ _soon_
 ## **📝 Documentation**
 [Architecture systémique](docs/systemArchitecture)  
 [Infrasctructure de conformité](docs/complianceInfrastructure)  
-Toute [la documentation est ici](docs)
-___
+<!-- Toute [la documentation est ici](docs) -->
+
+[Documentation](docs/) · [Contribuer](CONTRIBUTING.md) · [Sécurité](SECURITY.md)
+
 © 2026 - Projet Linceul Audit. Tous droits réservés.
 </div>

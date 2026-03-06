@@ -1,4 +1,4 @@
-<h1 align="center"><b>DOCUMENTATION</b><a href="../"><img src="../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a></h1>
+<h1 align="center"><b>DOCUMENTATION</b><a href="https://github.com/MiKL5/linceul-audit"><img src="../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a></h1>
 
 [CAC](spec)  
 [Fonctionnement du projet](operation)  
@@ -13,4 +13,6 @@
 [Pipeline MLOps](pipelineMLOps)  
 [Infrasctructure de conformité](complianceInfrastructure)
 
-<br><a href="../"><img src="../assets/images/banners/banner.webp"></a>
+<br><div align="center"><a href="https://github.com/MiKL5/linceul-audit"><img src="../assets/images/banners/banner.webp"></a>
+
+[← README](../README.md) · [Contribuer](../CONTRIBUTING.md) · [Sécurité](../SECURITY.md)
