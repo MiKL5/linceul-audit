@@ -4,6 +4,8 @@
 [Fonctionnement du projet](operation)  
 [Architecture du projet](architecture)  
 [Diagramme d'architecture](diagrams/architectureDiagram)  
+[Diagramme de cas d'utilisation](diagrams/useCase)  
+[Matrice de conformité](diagrams/complianceMatrix)
 [Seuil décisionnel](decisionThreshold)  
 [Architecture Systémique](systemArchitecture)  
 [Résumé analytiuqe](executiveSummary)  
