@@ -84,17 +84,54 @@ Contrairement aux architectures Java 21 (2023), Linceul Audit n'a plus besoin de
 **Intégration Panama (FFM)**
 J'utilise l'API Foreign Function & Memory (stable) pour appeler le moteur ONNX. Cela permet de passer des pointeurs mémoire off-heap directement de Java à C++ sans copie coûteuse et sans bloquer les Virtual Threads.
 
-<!--## **📂 Structure du Projet**
+## **📂 Structure du Projet**
 ```
-_soon_
-```-->
+linceul-audit/
+│
+├── assets/                                # Ressources visuelles
+│   └── images/
+│       ├── banners/
+│       ├── infographics/
+│       └── logo/
+│
+├── docs/                                 # Documentation exhaustive
+│   ├── architecture/
+│   ├── complianceInfrastructure/
+│   ├── decisionThreshold/
+│   ├── diagrams/
+│   ├── executiveSummary/
+│   ├── mappingOfSystemicMalpractice/
+│   ├── operation/
+│   ├── pipelineMLOps/
+│   ├── spec/
+│   ├── systemArchitecture/
+│   ├── taxonomyOfFraud/
+│   ├── typeOfFraud/
+│   └── README.md
+│
+├── data/                          # Ignoré — géré par DVC
+│   ├── raw/                       # Données brutes ISO 20022 / Core Banking
+│   ├── processed/                 # Après nettoyage + imputation (US-03)
+│   └── features/                  # Features engineerées — input modèle
+│
+├── tests/
+│   └── fixtures/
+│       └── golden_dataset/        # Git LFS — synthétique, anonymisé (US-06)
+│
+├── monitoring/
+│   └── drift_baseline/            # Git — JSON léger, statistiques de référence (US-15)
+│
+├── factory/                               # À créer - 🏭 L'Usine — Java 25 / Spring Boot 3.4+
+│
+├── laboratory/                            # À créer - 🧪 Le Laboratoire — Python 3.13 / Data Science
+│
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+└── SECURITY.md
+```
 
 <hr><div align="center">
-
-## **📝 Documentation**
-[Architecture systémique](docs/systemArchitecture)  
-[Infrasctructure de conformité](docs/complianceInfrastructure)  
-<!-- Toute [la documentation est ici](docs) -->
 
 [Documentation](docs/) · [Contribuer](CONTRIBUTING.md) · [Sécurité](SECURITY.md)
 
