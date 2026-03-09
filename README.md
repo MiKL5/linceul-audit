@@ -12,7 +12,7 @@
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-Machine_Learning-F7931E?style=flat&logo=scikitlearn&logoColor=white) 
 ![PyTorch](https://img.shields.io/badge/pytorch-Deep%20Learning-EE4C2C?style=flat&logo=pytorch&logoColor=white) 
 ![ONNX Runtime](https://img.shields.io/badge/onnx-Runtime-005CED?style=flat&logo=onnx&logoColor=white) 
-![PostgreSQL](https://img.shields.io/badge/postgresql-18.1-4169E1?style=flat&logo=postgresql&logoColor=white) 
+![PostgreSQL](https://img.shields.io/badge/postgresql-18.x-4169E1?style=flat&logo=postgresql&logoColor=white) 
 ![pgvector](https://img.shields.io/badge/extension-PG_Vector-0F9D58?style=flat&logo=postgresql&logoColor=white) 
 ![Redis](https://img.shields.io/badge/redis-8%20(cache%20%26%20latence)-DC382D?style=flat&logo=redis&logoColor=white) 
 ![Sécurité](https://img.shields.io/badge/sécurité-TLS%201.3%20%7C%20AES--256-232F3E?style=flat&logo=letsencrypt&logoColor=white)
@@ -95,7 +95,7 @@ linceul-audit/
 │       ├── infographics/
 │       └── logo/
 │
-├── docs/                                 # Documentation
+├── docs/                                   # Documentation
 │   ├── architecture/
 │   ├── complianceInfrastructure/
 │   ├── decisionThreshold/
@@ -110,10 +110,10 @@ linceul-audit/
 │   ├── typeOfFraud/
 │   └── README.md
 │
-├── data/                                 # Ignoré — géré par DVC
-│   ├── raw/                              # Données brutes ISO 20022 / Core Banking
-│   ├── processed/                        # Après nettoyage + imputation (US-03)
-│   └── features/                         # Features engineerées — input modèle
+├── data/                                  # Ignoré — géré par DVC
+│   ├── raw/                               # Données brutes ISO 20022 / Core Banking
+│   ├── processed/                         # Après nettoyage + imputation (US-03)
+│   └── features/                          # Features engineerées — input modèle
 │
 ├── tests/
 │   └── fixtures/
@@ -134,7 +134,7 @@ linceul-audit/
 
 <hr><div align="center">
 
-[Documentation](docs/) · [Contribuer](CONTRIBUTING.md) · [Sécurité](SECURITY.md)
+[Documentation](docs/) · [Contribuer](CONTRIBUTING.md) · [Sécurité](SECURITY.md) · [Code de Conduite](CODE_OF_CONDUCT.md)
 
 © 2026 - Projet Linceul Audit. Tous droits réservés.
 </div>

@@ -17,4 +17,4 @@
 
 <br><div align="center"><a href="https://github.com/MiKL5/linceul-audit"><img src="../assets/images/banners/banner.webp"></a>
 
-[← README](../README.md) · [Contribuer](../CONTRIBUTING.md) · [Sécurité](../SECURITY.md)
+[← README](../README.md) · [Contribuer](../CONTRIBUTING.md) · [Sécurité](../SECURITY.md) · [Code de Conduite](../CODE_OF_CONDUCT.md)
