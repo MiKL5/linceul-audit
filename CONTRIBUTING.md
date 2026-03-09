@@ -1,4 +1,4 @@
-# **CONTRIBUTING** <a href="./"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+# **CONTRIBUTING** <a href="https://github.com/MiKL5/linceul-audit"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 <div align="center">
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?style=flat&logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org) 
@@ -34,14 +34,14 @@
 
 Avant de contribuer, les outils suivants doivent être installés et configurés :
 
-Outil|Version minimale|Rôle
+Outil | Version minimale | Rôle
 --|---|---
-JDK|25 LTS|Runtime production (Project Loom + Panama FFM)
-Python|3.13|Data Science, entraînement, export ONNX
-PostgreSQL|18|Base de données + extension pgvector
-Git|2.44+|Gestion de versions
-GitHub CLI (`gh`)|2.x|Automatisation, création de branches, PRs
-ONNX Runtime|Opset 21|Inférence Java via API FFM
+JDK | 25 LTS | Runtime production (Project Loom + Panama FFM)
+Python | 3.13 | Data Science, entraînement, export ONNX
+PostgreSQL | 18 | Base de données + extension pgvector
+Git | 2.44+ | Gestion de versions
+GitHub CLI (`gh`) | 2.x | Automatisation, création de branches, PRs
+ONNX Runtime | Opset 21 | Inférence Java via API FFM
 
 L'authentification GitHub **doit** utiliser le protocole **SSH avec une clé `ed25519` protégée par passphrase**.  
 Toute connexion HTTPS avec PAT est proscrite en dehors des pipelines CI/CD automatisés.
@@ -60,10 +60,10 @@ Le projet suit un **GitFlow étendu** adapté à l'architecture hybride Java 25 
 
 ### 2.1 Branches permanentes (protégées — push direct interdit)
 
-Branche|Rôle
+Branche | Rôle
 ---|---
-`master`|Production certifiée — état reproductible et auditable (CMF L561-15). Chaque commit correspond à une version déployable en conditions judiciaires.
-`develop`|Intégration continue — point de convergence de toutes les contributions avant stabilisation.
+`master` | Production certifiée — état reproductible et auditable (CMF L561-15). Chaque commit correspond à une version déployable en conditions judiciaires.
+`develop` | Intégration continue — point de convergence de toutes les contributions avant stabilisation.
 
 ### 2.2 Nomenclature des branches temporaires
 
@@ -125,16 +125,16 @@ Le projet applique la spécification **[Conventional Commits 1.0.0](https://conv
 
 Type | Usage | Exemple 
 ---|---|---
-`feat`|Nouvelle fonctionnalité (User Story)|`feat(inference): add onnx thread pool isolation`
-`fix`|Correction de bug|`fix(ingestion): reject null transaction amount field`
-`test`|Ajout ou modification de tests|`test(parity): add python-java golden dataset cross-validation`
-`docs`|Documentation uniquement|`docs(fria): add art27 fundamental rights assessment`
-`chore`|Maintenance (dépendances, config)|`chore(deps): upgrade onnx-runtime to opset 21`
-`refactor`|Refactorisation sans changement comportemental|`refactor(bulkhead): extract inference pool configuration`
-`perf`|Optimisation de performance|`perf(loom): remove synchronized block causing pinning`
-`ci`|Pipeline CI/CD|`ci(parity): add python-java score divergence check`
-`security`|Correctif ou renforcement de sécurité|`security(model): encrypt onnx artifact at rest`
-`compliance`|Modification liée à la conformité réglementaire|`compliance(rgpd): implement art22 hitl override audit log`
+`feat` | Nouvelle fonctionnalité (User Story) | `feat(inference): add onnx thread pool isolation`
+`fix` | Correction de bug | `fix(ingestion): reject null transaction amount field`
+`test` | Ajout ou modification de tests | `test(parity): add python-java golden dataset cross-validation`
+`docs` | Documentation uniquement | `docs(fria): add art27 fundamental rights assessment`
+`chore` | Maintenance (dépendances, config) | `chore(deps): upgrade onnx-runtime to opset 21`
+`refactor` | Refactorisation sans changement comportemental | `refactor(bulkhead): extract inference pool configuration`
+`perf` | Optimisation de performance | `perf(loom): remove synchronized block causing pinning`
+`ci` | Pipeline CI/CD | `ci(parity): add python-java score divergence check`
+`security` | Correctif ou renforcement de sécurité | `security(model): encrypt onnx artifact at rest`
+`compliance` | Modification liée à la conformité réglementaire | `compliance(rgpd): implement art22 hitl override audit log`
 
 ### 3.3 Règles absolues
 
@@ -274,13 +274,13 @@ max_line_length = 120
 
 Conformément à la **section 8 du CDC**, le plan de tests est draconien et non négociable.
 
-Niveau|Framework|Seuil de succès|Déclencheur
+Niveau | Framework | Seuil de succès|Déclencheur
 ---|---|---|---
-Tests unitaires|JUnit 5 / pytest|Coverage ≥ 80%|Chaque PR
-Tests de parité|Script `tests/parity/`|Delta < 1e-5|PR modifiant l'inférence
-Audit statique anti-pinning|SpotBugs + `jdk.VirtualThreadPinned`|0 violation|Chaque PR Java
-Tests de charge|Gatling|5× charge nominale, 0 fuite mémoire| Release uniquement
-Backtesting|Dataset 12 mois|AUC ≥ baseline établie|Avant chaque mise en production
+Tests unitaires | JUnit 5 / pytest|Coverage ≥ 80% | Chaque PR
+Tests de parité | Script `tests/parity/` | Delta < 1e-5|PR modifiant l'inférence
+Audit statique anti-pinning | SpotBugs + `jdk.VirtualThreadPinned` | 0 violation|Chaque PR Java
+Tests de charge | Gatling | 5× charge nominale, 0 fuite mémoire | Release uniquement
+Backtesting | Dataset 12 mois | AUC ≥ baseline établie | Avant chaque mise en production
 
 > **Golden Dataset :** stocké dans `tests/fixtures/golden_dataset/` — immuable, versionné avec Git LFS.  
 > Toute modification nécessite l'approbation du Data Scientist référent et une mise à jour de la Model Card.
@@ -302,12 +302,12 @@ Ces règles sont **non négociables**. Toute violation entraîne le rejet imméd
 
 ## 9. Obligations de conformité
 
-Réglementation |Obligation pour le contributeur
+Réglementation | Obligation pour le contributeur
 ---|---
-**AI Act Art. 27**|Toute modification du modèle ou de son périmètre d'usage met à jour `docs/compliance/FRIA.md`
-**RGPD Art. 22**|Le mécanisme HITL ne peut jamais être désactivé ou contourné pour les scores dépassant le seuil critique
-**CMF L561-15**|Les logs de décision sont WORM — toute modification du format de log nécessite une revue DPO préalable
-**ISO/IEC 42001**|Les Model Cards (`docs/compliance/model-cards/`) sont mises à jour à chaque nouvelle version de modèle déployée
+**AI Act Art. 27** | Toute modification du modèle ou de son périmètre d'usage met à jour `docs/compliance/FRIA.md`
+**RGPD Art. 22** | Le mécanisme HITL ne peut jamais être désactivé ou contourné pour les scores dépassant le seuil critique
+**CMF L561-15** | Les logs de décision sont WORM — toute modification du format de log nécessite une revue DPO préalable
+**ISO/IEC 42001** | Les Model Cards (`docs/compliance/model-cards/`) sont mises à jour à chaque nouvelle version de modèle déployée
 
 ---
 

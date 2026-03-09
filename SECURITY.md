@@ -1,4 +1,4 @@
-# **SECURITY** <a href="./"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+# **SECURITY** <a href="https://github.com/MiKL5/linceul-audit"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 <div align="center">
 
 [![Classification](https://img.shields.io/badge/Classification-CONFIDENTIEL%20%2F%20HAUTE%20CRITICITÉ-red?style=flat)](docs/spec)
@@ -17,12 +17,12 @@
 
 ## Versions supportées
 
-Version|Supportée|Notes
+Version | Supportée | Notes
 ---|---|---
-`master` (production)|✅ Patches prioritaires sous 7 jours|Branche protégée — production certifiée
-`develop` (HEAD)|✅ Activement maintenue|Intégration continue
-`release/*` en cours|✅ Gel du code — patches appliqués|Phase de stabilisation
-Versions `< v1.0.0`|⚠️ Best-effort uniquement|Aucune garantie de patch
+`master` (production) | ✅ Patches prioritaires sous 7 jours | Branche protégée — production certifiée
+`develop` (HEAD) | ✅ Activement maintenue | Intégration continue
+`release/*` en cours | ✅ Gel du code — patches appliqués | Phase de stabilisation
+Versions `< v1.0.0` | ⚠️ Best-effort uniquement | Aucune garantie de patch
 
 ## Signalement d'une vulnérabilité
 
@@ -40,10 +40,10 @@ Pour toute vulnérabilité de sécurité, **n'ouvrez pas d'issue publique**. Une
 
 **Option 2 — Contact direct (vulnérabilités critiques) :**
 
-Rôle|Contact
+Rôle | Contact
 ---|---
-Responsable Sécurité (RSSI)|`[À COMPLÉTER]`
-DPO — Données Personnelles|`[À COMPLÉTER]`
+Responsable Sécurité (RSSI) | `[À COMPLÉTER]`
+DPO — Données Personnelles | `[À COMPLÉTER]`
 
 ### Informations à fournir dans le rapport
 
@@ -61,12 +61,12 @@ Preuve (PoC)   : Code ou capture d'écran (joint en pièce chiffrée pour les cr
 
 ## Délais de réponse engagés
 
-Criticité|Accusé de réception|Analyse initiale|Patch déployé|Divulgation publique
+Criticité | Accusé de réception | Analyse initiale | Patch déployé | Divulgation publique
 ---|---|---|---|---
-🔴 Critique (CVSS ≥ 9.0)|24 h|48 h|7 jours|Après patch + 7 jours
-🟠 Haute (CVSS 7.0–8.9)|48 h|5 jours|30 jours|Après patch + 14 jours
-🟡 Moyenne (CVSS 4.0–6.9)|72 h|7 jours|60 jours|Après patch + 30 jours
-🟢 Faible (CVSS < 4.0)|1 semaine|14 jours|90 jours|Discrétionnaire
+🔴 Critique (CVSS ≥ 9.0) | 24 h|48 h | 7 jours | Après patch + 7 jours
+🟠 Haute (CVSS 7.0–8.9) | 48 h | 5 jours|30 jours | Après patch + 14 jours
+🟡 Moyenne (CVSS 4.0–6.9) | 72 h | 7 jours|60 jours | Après patch + 30 jours
+🟢 Faible (CVSS < 4.0) | 1 semaine|14 jours | 90 jours|Discrétionnaire
 
 
 ## Périmètre de sécurité
@@ -105,16 +105,16 @@ Criticité|Accusé de réception|Analyse initiale|Patch déployé|Divulgation pu
 
 Couche|Mesure|Référence
 ---|---|---
-**Secrets**|KMS / HashiCorp Vault — zéro secret dans le code|CDC §7.2
-**Modèle**|Artefacts `.onnx` chiffrés AES-256 au repos|US-13
-**Transport**|TLS 1.3 obligatoire sur tous les canaux réseau|CDC §3.1
-**Logs**|Journalisation WORM cryptographique immuable|CMF L561-15
-**Inputs**|Sanitization et validation avant inférence|US-14
-**Monitoring**|JFR `jdk.VirtualThreadPinned` + Prometheus/Micrometer|CDC §3.2
-**Accès données**|Principe du moindre privilège sur PostgreSQL|RGPD Art. 32
-**Endpoints**|Rate Limiting sur les endpoints d'inférence|CDC §7.1
-**Entraînement**|Audit strict du Feature Store (anti-Data Poisoning)|CDC §7.1
-**Scores**|Arrondissement des scores exposés (anti-inversion)|CDC §7.1
+**Secrets** | KMS / HashiCorp Vault — zéro secret dans le code | CDC §7.2
+**Modèle** | Artefacts `.onnx` chiffrés AES-256 au repos | US-13
+**Transport** | TLS 1.3 obligatoire sur tous les canaux réseau | CDC §3.1
+**Logs** | Journalisation WORM cryptographique immuable | CMF L561-15
+**Inputs** | Sanitization et validation avant inférence | US-14
+**Monitoring** | JFR `jdk.VirtualThreadPinned` + Prometheus/Micrometer | CDC §3.2
+**Accès données** | Principe du moindre privilège sur PostgreSQL | RGPD Art. 32
+**Endpoints** | Rate Limiting sur les endpoints d'inférence | CDC §7.1
+**Entraînement** | Audit strict du Feature Store (anti-Data Poisoning) | CDC §7.1
+**Scores** | Arrondissement des scores exposés (anti-inversion) | CDC §7.1
 
 </details>
 
