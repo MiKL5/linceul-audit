@@ -46,7 +46,7 @@ Définition des cas d'usage par persona et des parcours utilisateurs critiques, 
 Cas d'utilisation distincts pour Nora (Analyste LCB-FT), Ezra (Data Scientist), Axel (DPO), Sophie (SRE).  
 Matrice des responsabilités fonctionnelles.
 
-[`#26` 🗺️ User Journey — Nora (Analyste LCB-FT)]()  
+[`#26` 🗺️ User Journey — Nora (Analyste LCB-FT)](userJourneyNora/)  
 Parcours cognitif complet : réception alerte → consultation SHAP → similarité pgvector → Override HITL → génération rapport PDF L561-15.
 
 <details>
