@@ -11,7 +11,7 @@
 [Taxonomie des fraudes couvertes](taxonomieOfFraud)  
 [Cartographie des malversations systémiques](mappingOfSystemicMalpractice)  
 [Pipeline MLOps](pipelineMLOps)  
-[Infrasctructure de conformité](complianceInfrastructure)
+[Infrasctructure de conformité](complianceInfrastructure)  
 
 <br><div align="center"><a href="https://github.com/MiKL5/linceul-audit"><img src="../assets/images/banners/banner.webp"></a>
 
