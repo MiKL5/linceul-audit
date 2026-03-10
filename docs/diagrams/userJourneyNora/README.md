@@ -39,7 +39,7 @@ Attribut | Détail
 
 > Nora reçoit une alerte critique, analyse les éléments explicatifs, valide la suspicion et transmet à TRACFIN.
 
-# | Étape | Action de Nora | Système | Émotion | Point de Friction
+| # | Étape | Action de Nora | Système | Émotion | Point de Friction
 ---|---|---|---|---|---
 1 | **Réception alerte** | Consulte la file d'alertes, sélectionne l'alerte critique | Notification push + dashboard temps réel | 😐 Neutre | File potentiellement longue — priorisation nécessaire
 2 | **Lecture du contexte** | Consulte le score de risque, le montant, la contrepartie, le pays | Interface < 200 ms (US-01) | 🤔 Concentrée | Score sans explication = boîte noire inacceptable
@@ -56,7 +56,7 @@ Attribut | Détail
 
 > Nora juge l'alerte non fondée après analyse et la classe sans suite.
 
-# | Étape | Action de Nora | Système | Émotion | Point de Friction
+| # | Étape | Action de Nora | Système | Émotion | Point de Friction
 ---|---|---|---|---|---
 1–4 | **Analyse identique** | Idem flux nominal étapes 1 à 4 | — | 🤔 Concentrée | —
 5 | **Décision de clôture** | Clique sur « Classer sans suite » + justification obligatoire | Log WORM immuable (US-08) | 😌 Confiante | Justification exigée même pour un faux positif
@@ -68,7 +68,7 @@ Attribut | Détail
 
 > Nora identifie un risque juridique ou une ambiguïté réglementaire nécessitant l'arbitrage du DPO.
 
-# | Étape | Action de Nora | Système | Émotion | Point de Friction 
+| # | Étape | Action de Nora | Système | Émotion | Point de Friction 
 ---|---|---|---|---|---
 1–4 | **Analyse identique** | Idem flux nominal étapes 1 à 4 | — | 🤔 Concentrée | —
 5 | **Identification du risque juridique** | Détecte une ambiguïté (ex. : personne politiquement exposée, double nationalité) | Enrichissement Core Banking | 😰 Incertaine | Manque d'indicateurs réglementaires contextuels
@@ -82,7 +82,7 @@ Attribut | Détail
 
 > Nora n'a pas statué dans le délai imparti — le système déclenche une escalade automatique.
 
-# | Étape | Action de Nora | Système | Émotion | Point de Friction
+| # | Étape | Action de Nora | Système | Émotion | Point de Friction
 ---|---|---|---|---|---
 1 | **Réception alerte** | Alerte reçue mais non traitée (surcharge, absence) | Dashboard | 😓 Surchargée | File d'alertes trop volumineuse
 2 | **Rappel automatique** | Reçoit une notification de rappel (T+1h) | Scheduler — notification push | 😬 Stressée | Rappels répétés perçus comme intrusifs
@@ -94,8 +94,8 @@ Attribut | Détail
 
 ## 6. Synthèse des Points de Friction
 
-Point de Friction | Flux Concerné | Sévérité | Recommandation
----|---|---|---
+Point de Friction | Flux Concerné | Sévérité | Recommandation 
+---|---|---|--- 
 SHAP trop technique | Nominal | 🔴 Haute | Reformulation NLP systématique en langage métier
 Justification Override perçue comme contraignante | Nominal, Alt. A | 🟠 Moyenne | Proposer des justifications pré-remplies (templates)
 Délai génération PDF > 2 s | Nominal | 🟠 Moyenne | Génération asynchrone avec indicateur de progression
@@ -108,7 +108,7 @@ Processus de réassignation non formalisé | Alt. C | 🟡 Faible | Bouton « Re
 
 ## 7. Diagrammes Liés
 
-# | Diagramme | Relation 
+| # | Diagramme | Relation 
 ---|---|---
 `#06` 🧑‍⚖️ Séquence — Flux HITL (alerte critique) | Modélisation technique du flux Override HITL que Nora exécute à l'étape 6 | Complémentaire
 `#08` 📋 BPMN — Processus LCB-FT / Déclaration de soupçon | Processus métier formalisé dont ce User Journey est la vue subjective | Complémentaire
