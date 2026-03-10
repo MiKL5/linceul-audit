@@ -1,4 +1,4 @@
-# **Diagramme de cas d'utilisation**<a href="../../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+# **Diagramme de cas d'utilisation**<a href="../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 ```mermaid
 graph LR
     %% ── Acteurs internes

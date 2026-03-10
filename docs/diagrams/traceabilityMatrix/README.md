@@ -1,4 +1,4 @@
-# **Matrice de traçabilité**<a href="../../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+# **Matrice de traçabilité**<a href="../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 <div align="center">
 
 [![Tests](https://img.shields.io/badge/User%20Stories-US--01%20→%20US--15-blue?style=flat&logo=testinglibrary&logoColor=white)](.) 

@@ -1,4 +1,4 @@
-# **Matrice de conformité**<a href="../../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+# **Matrice de conformité**<a href="../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 <div align="center">
 
 [![AI Act](https://img.shields.io/badge/AI%20Act-UE%202024%2F1689-003399?style=flat&logo=europeancentralbank&logoColor=white)](../../../docs/compliance/FRIA.md)

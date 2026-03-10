@@ -1,4 +1,4 @@
-# **Diagramme d'architecture**<a href="../../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+# **Diagramme d'architecture**<a href="../"><img src="../../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 ```mermaid
 graph TD
     A[Flux ISO 20022 mTLS] --> B[Loom Orchestrator]
