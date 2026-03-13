@@ -72,13 +72,13 @@ précédent par raffinement successif.
 Vue bout-en-bout du pipeline de détection : Flux ISO 20022 mTLS → Loom Orchestrator → Feature Engineering (Z-Score/Benford) → ONNX Inference (Bulkhead Anti-Pinning) → Neuro-Symbolic Bridge → décision blocage/WORM ou PostgreSQL pgvector + Redis.  
 Inclut le cycle d'entraînement PyTorch → ONNX Export, le périmètre Zero Trust (Vault mTLS + K8s) et la boucle HITL SHAP/LIME. Diagramme transversal précédant la hiérarchie C4 formelle.
 
-[`#02` 🏗️ C4 — Conteneurs (L2)]()  
+[`#02` 🏗️ C4 — Conteneurs (L2)](#)  
 Stack complète : HTTP Handler (VThreads), InferencePool (Platform Threads), Rule Engine, Feature Store, PostgreSQL + pgvector, Archive WORM, Prometheus/Grafana.
 
-[`#03` 🔩 C4 — Composants (L3)]()  
+[`#03` 🔩 C4 — Composants (L3)](#)  
 Détail interne des conteneurs : `ONNXInferenceService`, `BulkheadExecutor`, `SHAPExplainer`, `WORMLogger`, `FallbackRuleEngine`, `VectorSearchService`.
 
-[`#04` 💻 C4 — Code (L4)]()  
+[`#04` 💻 C4 — Code (L4)](#)  
 Classes critiques annotées : `ONNXSession`, `ThreadPoolExecutor` (dimensionnement CPU-bound), `WORMLogger` (hachage cryptographique), `SHAPExplainer` (top-3 features).
 
 ---
@@ -87,15 +87,15 @@ Classes critiques annotées : `ONNXSession`, `ThreadPoolExecutor` (dimensionneme
 
 Définition du contrat de données : schéma relationnel, stratégie de Feature Store versionnée, et traçabilité complète de la chaîne de transformation (Data Lineage).
 
-[`#13` 🗄️ ERD — PostgreSQL + pgvector]()  
+[`#13` 🗄️ ERD — PostgreSQL + pgvector](#)  
 Entités : `transactions`, `features_versioned`, `audit_logs_worm`, `onnx_models`, `embeddings` (pgvector).  
 Clés étrangères, contraintes d'intégrité et indexation.
 
-[`#16` 📦 Feature Store — Versionnement]()  
+[`#16` 📦 Feature Store — Versionnement](#)  
 Définition unique et versionnée de chaque feature (ex. `avg_amount_7d`).  
 Stratégies d'imputation documentées par champ (médiane / -1 / rejet). Aucune valeur `NaN` tolérée.
 
-[`#14` 🔗 DFD — Data Lineage (Niveaux 0→2)]()  
+[`#14` 🔗 DFD — Data Lineage (Niveaux 0→2)](#)  
 Traçabilité complète : Source Core Banking → ETL → Feature Store versionné → Tenseur d'entrée ONNX. Conforme à l'exigence de reproductibilité absolue (§4.1).
 
 ---
@@ -104,16 +104,16 @@ Traçabilité complète : Source Core Banking → ETL → Feature Store versionn
 
 Modélisation comportementale des traitements critiques, du cycle de vie d'une transaction à la déclaration de soupçon LCB-FT.
 
-[`#05` ⚡ Séquence — Cycle de vie d'une transaction]()  
+[`#05` ⚡ Séquence — Cycle de vie d'une transaction](#)  
 Flux nominal complet : Ingestion JSON → Validation (US-01) → Enrichissement <10ms (US-02) → Imputation (US-03) → Inférence ONNX (US-04) → Log WORM (US-10).
 
-[`#06` 🧑‍⚖️ Séquence — Flux HITL (alerte critique)]()  
+[`#06` 🧑‍⚖️ Séquence — Flux HITL (alerte critique)](#)  
 Architecture Human-in-the-Loop imposée par RGPD Art. 22 : alerte → interface analyste → SHAP top-3 (US-07) → décision Override (US-08) → log immuable.
 
-[`#07` 🔄 Séquence — Fallback heuristique]()  
+[`#07` 🔄 Séquence — Fallback heuristique](#)  
 Latence ONNX > 500ms → Load Shedding → bascule automatique sur Rule Engine déterministe (US-05) → log de dégradation → reprise normale.
 
-[`#08` 📋 BPMN — Processus LCB-FT / Déclaration de soupçon]()  
+[`#08` 📋 BPMN — Processus LCB-FT / Déclaration de soupçon](#)  
 Processus complet Art. L561-15 CMF : alerte confirmée → investigation Nora → pré-rapport PDF (US-11) → validation DPO → transmission TRACFIN.
 
 ---
@@ -126,11 +126,11 @@ Modélisation des mécanismes de concurrence Java 21 (Project Loom), du problèm
 [`#10` 🧵 État — Virtual Thread (Pinning JNI)](virtualThreadAndPinningJNI/)  
 Automate d'états d'un Virtual Thread : `Runnable` → `Parked` → **`Pinned`** (appel JNI ONNX) → `Unparked`. Événement JFR `jdk.VirtualThreadPinned` matérialisé.
 
-[`#11` 🏗️ Séquence — Pattern Bulkhead]()  
+[`#11` 🏗️ Séquence — Pattern Bulkhead](#)  
 Séparation Front-End (Virtual Threads, I/O Bound) vs Back-End Inférence (`ThreadPoolExecutor` Platform Threads, CPU/JNI Bound).  
 Isolation stricte des ressources.
 
-[`#12` 📉 Schéma Backpressure / Load Shedding]()  
+[`#12` 📉 Schéma Backpressure / Load Shedding](#)  
 File d'attente du pool d'inférence : seuil 500ms → rejet ou redirection des requêtes excédentaires.  
 Métriques Micrometer/Prometheus intégrées.
 
@@ -153,14 +153,14 @@ La stratégie Bulkhead (#11) est la **seule mitigation validée** ; toute tentat
 
 Modélisation de la surface d'attaque spécifique aux systèmes d'IA financière (Evasion, Data Poisoning, Model Inversion) et des contre-mesures architecturales.
 
-[`#19` ⚔️ Modèle de Menaces STRIDE]()  
+[`#19` ⚔️ Modèle de Menaces STRIDE](#)  
 Surfaces d'attaque : Evasion (Adversarial Examples), Data Poisoning (Feature Store), Model Inversion (rate limiting + arrondissement). Mapping menace → mitigation → composant.
 
-[`#20` 🔑 Flux de Secrets — KMS / HashiCorp Vault]()  
+[`#20` 🔑 Flux de Secrets — KMS / HashiCorp Vault](#)  
 Injection sécurisée des secrets au runtime : KMS/Vault → composants consommateurs.
 **Zéro secret en dur dans le code source.** Rotation automatique documentée.
 
-[`#21` 🛡️ Sanitization des Entrées (Anti-Adversarial)]()  
+[`#21` 🛡️ Sanitization des Entrées (Anti-Adversarial)](#)  
 Flux de détection d'inputs atypiques (US-14) : input → détection d'anomalie statistique → score de confiance → rejet / quarantaine / log forensique.
 
 ---
@@ -170,13 +170,13 @@ Flux de détection d'inputs atypiques (US-14) : input → détection d'anomalie 
 Modélisation du pipeline bout-en-bout de déploiement et de surveillance des modèles,
 depuis l'entraînement Python jusqu'à la détection de dérive en production.
 
-[`#09` 🔬 Activité — Cycle de vie d'un modèle ONNX]()  
+[`#09` 🔬 Activité — Cycle de vie d'un modèle ONNX](#)  
 Train Python (PyTorch/sklearn) → Export `.onnx` → Chiffrement au repos (US-13) → Tests de parité ε-près (US-06) → Blue/Green Deploy → Monitoring JFR.
 
-[`#17` 🚀 Pipeline CI/CD MLOps]()  
+[`#17` 🚀 Pipeline CI/CD MLOps](#)  
 Automatisation complète : commit → lint → unit tests → export ONNX → chiffrement → validation parité Java/Python (Golden Dataset) → déploiement conditionnel.
 
-[`#18` 📊 Dérive de Modèle (Model Drift)]()  
+[`#18` 📊 Dérive de Modèle (Model Drift)](#)  
 Surveillance PSI / KL-Divergence sur la distribution des scores en production → alerte si déviation > 5% (US-15) → déclenchement automatique du pipeline de re-entraînement.
 
 ---
@@ -190,13 +190,13 @@ Chaque diagramme de cette section constitue une pièce du **bouclier juridique**
 Mapping exhaustif exigences ↔ User Stories (US-01 à US-15) : AI Act Annexe III, RGPD Art. 22, CMF L561-15, ISO/IEC 42001.  
 Statut de conformité par exigence.
 
-[`#22` 🔍 Processus FRIA — AI Act Art. 27]()  
+[`#22` 🔍 Processus FRIA — AI Act Art. 27](#)  
 Workflow d'évaluation d'impact sur les droits fondamentaux : identification → analyse → mitigation → **preuve de non-discrimination à l'instant T** intégrée dans le log.
 
-[`#15` 🔒 DFD — Flux RGPD des données personnelles]()  
+[`#15` 🔒 DFD — Flux RGPD des données personnelles](#)  
 Cycle de vie RGPD : collecte → pseudonymisation → traitement algorithmique → exercice du droit d'accès (US-12) → purge conforme. Cartographie des transferts.
 
-[`#23` 📼 Cycle de vie du Log WORM]()  
+[`#23` 📼 Cycle de vie du Log WORM](#)  
 Génération → hachage cryptographique (chaîne de preuves) → écriture WORM immuable → requête d'audit → **rejeu déterministe** du modèle exact jusqu'à 5 ans après les faits.
 
 <details>
@@ -214,7 +214,7 @@ Cette contrainte conditionne l'intégralité de l'architecture de Feature Store 
 L'interface n'est pas un accessoire ergonomique : elle est un **garant juridique**.  
 Elle matérialise l'architecture HITL et doit permettre à l'analyste de renverser une décision algorithmique sur la base d'éléments explicables.
 
-[`#27` 🖥️ Wireframe — Interface Analyste (Nora)]()  
+[`#27` 🖥️ Wireframe — Interface Analyste (Nora)](#)  
 Contraintes : latence d'affichage < 200ms, SHAP top-3 en langage naturel, bouton Override avec justification obligatoire, lien Data Lineage contextuel, génération rapport PDF L561-15.
 
 ---
@@ -223,7 +223,7 @@ Contraintes : latence d'affichage < 200ms, SHAP top-3 en langage naturel, bouton
 
 Plan de test draconien validant la mutation technologique Java 21, la parité des modèles et la couverture exhaustive de toutes les User Stories.
 
-[`#28` 🏭 Déploiement — Infrastructure]()  
+[`#28` 🏭 Déploiement — Infrastructure](#)  
 Conteneurs Docker/K8s, replicas HA, PostgreSQL avec réplication, stockage WORM dédié,
 stack Prometheus + JFR + Grafana, ingress TLS. Dimensionnement cible.
 

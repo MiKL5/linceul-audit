@@ -3,7 +3,7 @@
 [CAC](spec)  
 [Fonctionnement du projet](operation)  
 [Architecture du projet](architecture)  
-[Diagrammes](diagrams/)  
+[Diagrammes](diagrams/) <kbd>_wip_</kbd>  
 [Seuil décisionnel](decisionThreshold)  
 [Architecture Systémique](systemArchitecture)  
 [Résumé analytiuqe](executiveSummary)  
