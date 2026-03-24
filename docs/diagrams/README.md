@@ -9,9 +9,8 @@
 5. [Données & DataOps](#5-données--dataops)
 6. [Sécurité & Cyber-Résilience](#6-sécurité--cyber-résilience)
 7. [Interfaces & Personas](#7-interfaces--personas)
-8. [Qualité & Tests](#8-qualité--tests)
 
----
+___
 
 ## 1. Contexte & Vision
 
@@ -41,7 +40,7 @@ Persona|Rôle|Exigence clé
 
 </details>
 
----
+___
 
 ## 2. Architecture Système
 
@@ -73,7 +72,7 @@ La stratégie Bulkhead (`D-02`) est la **seule mitigation validée** ; toute ten
 
 </details>
 
----
+___
 
 ## 3. Pipeline ML & Dictionary Learning
 
@@ -99,7 +98,7 @@ Conforme AI Act Annexe III exigences d'explicabilité.
 Train Python (PyTorch/sklearn) → Export `.onnx` → Chiffrement → Tests de parité ε-près (US-06) → Blue/Green Deploy → Monitoring JFR.  
 Pipeline CI/CD automatisé : commit → lint → unit tests → export ONNX → validation parité Java/Python (Golden Dataset) → déploiement conditionnel.
 
----
+___
 
 ## 4. Conformité Réglementaire
 
@@ -130,7 +129,7 @@ Cette contrainte conditionne l'intégralité de l'architecture de Feature Store 
 
 </details>
 
----
+___
 
 ## 5. Données & DataOps
 
@@ -148,7 +147,7 @@ Stratégies d'imputation documentées par champ (médiane / -1 / rejet). Aucune 
 Surveillance de l'erreur de reconstruction en sliding window.  
 Alerte si déviation > 5% (US-15) → déclenchement automatique du pipeline de re-entraînement.
 
----
+___
 
 ## 6. Sécurité & Cyber-Résilience
 
@@ -171,7 +170,7 @@ Injection sécurisée des secrets au runtime : KMS/Vault → composants consomma
 
 </details>
 
----
+___
 
 ## 7. Interfaces & Personas
 

@@ -1,6 +1,6 @@
 <h1 align="center"><b>DOCUMENTATION</b><a href="https://github.com/MiKL5/linceul-audit"><img src="../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a></h1>
 
-[CAC](spec)  
+[Cahier des charges](spec)  
 [Fonctionnement du projet](operation)  
 [Architecture du projet](architecture)  
 [Diagrammes](diagrams/) <kbd>_wip_</kbd>  
