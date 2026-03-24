@@ -1,116 +1,385 @@
-# CAHIER DES CHARGES TECHNIQUE ET FONCTIONNEL DE « LINCEUL AUDIT »<a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
-**Code Projet :** LINCEUL-2026  
-**Classification :** CONFIDENTIEL / HAUTE CRITICITÉ  
-**Architecture Cible :** Hybride Java 25 (Loom) / Python (Data Science) / ONNX  
-**Conformité :** AI Act (UE), RGPD, CMF L561-15, ISO/IEC 42001
+# LINCEUL-AUDIT — Cahier des Charges Technique et Fonctionnel<a href="../"><img src="../../assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
+
+> **Plateforme Hybride de Détection de Fraude Financière**
+
 ---
-## **1. Introduction et Contexte Stratégique**
-### **1.1. Préambule : Le Changement de Paradigme**
-Le secteur financier européen fait face à une double rupture : l'industrialisation des vecteurs d'attaque (fraude synthétique, réseaux de mules, attaques adverses sur IA) et un durcissement sans précédent du cadre réglementaire. Le projet « Linceul Audit » ne vise pas une simple mise à niveau incrémentale des systèmes de surveillance des transactions (TMS). Il ambitionne de **redéfinir l'épistémologie de la détection de fraude** : passer d'une approche probabiliste opaque (« Boîte Noire ») à une approche déterministe, explicable et juridiquement opposable (« Boîte Grise »).  
-L'objectif est de déployer une plateforme capable de traiter des flux massifs en temps réel avec une latence infra-milliseconde, tout en garantissant que chaque décision algorithmique soit auditable, équitable et conforme aux exigences de l'AI Act et de l'ACPR.
-### **1.2. La Double Injonction : Performance vs Conformité**
+
+<div align="center">
+
+Champ | Valeur
+---|---
+**Code Projet** | `LINCEUL-2026`
+**Version** | `2.0 — Mars 2026`
+**Classification** | ⚠️ CONFIDENTIEL / HAUTE CRITICITÉ
+**Architecture** | Java 25 (Loom + Panama) · Python 3.13 · ONNX Opset 21
+**Conformité** | AI Act (UE) · RGPD · CMF L561-15 · ISO/IEC 42001
+**Nouveauté v2** | Intégration Dictionary Learning (représentation parcimonieuse)
+**Auteur** | Mickael GAILLARD
+
+</div>
+
+---
+
+## Table des Matières
+
+1. [Introduction et Contexte Stratégique](#1-introduction-et-contexte-stratégique)
+2. [Cadre Normatif Avancé et Conformité](#2-cadre-normatif-avancé-et-conformité)
+3. [Architecture Technique : Haute Performance et Résilience](#3-architecture-technique--haute-performance-et-résilience)
+4. [Dictionary Learning — Représentation Parcimonieuse *(Nouveau v2.0)*](#4-dictionary-learning--représentation-parcimonieuse-nouveau-v20)
+5. [Ingénierie des Données et DataOps](#5-ingénierie-des-données-et-dataops)
+6. [Personas Détaillés : Ingénierie Sociotechnique](#6-personas-détaillés--ingénierie-sociotechnique)
+7. [User Stories Exhaustives](#7-user-stories-exhaustives)
+8. [Sécurité Avancée et Cyber-Résilience](#8-sécurité-avancée-et-cyber-résilience)
+9. [Stratégie de Test et Qualité](#9-stratégie-de-test-et-qualité)
+10. [Conclusion et Validation](#10-conclusion-et-validation)
+
+---
+
+## 1. Introduction et Contexte Stratégique
+
+### 1.1. Préambule : Le Changement de Paradigme
+
+Le secteur financier européen fait face à une **double rupture** :
+* **L'industrialisation des vecteurs d'attaque** : fraude synthétique, réseaux de mules, attaques adverses sur IA.
+* **Le durcissement sans précédent du cadre réglementaire** : AI Act, ACPR, RGPD renforcé.
+
+Le projet **« Linceul Audit »** ne vise pas une simple mise à niveau incrémentale des systèmes de surveillance des transactions (TMS). Il ambitionne de **redéfinir l'épistémologie de la détection de fraude** : passer d'une approche probabiliste opaque (« Boîte Noire ») à une approche **déterministe, explicable et juridiquement opposable** (« Boîte Grise »).
+
+L'objectif est de déployer une plateforme capable de traiter des **flux massifs en temps réel avec une latence infra-milliseconde**, tout en garantissant que chaque décision algorithmique soit **auditable, équitable et conforme** aux exigences de l'AI Act et de l'ACPR.
+
+### 1.2. La Double Injonction : Performance vs Conformité
+
 Le système doit résoudre l'équation suivante :
-1. **Performance (Throughput & Latency) :** Absorber les pics de charge (C10k problem) sans dégradation de service, en exploitant la concurrence structurée de Java 21 (Virtual Threads).
-2. **Rigueur Juridique (Compliance) :** Garantir que l'utilisation de threads virtuels et de modèles neuronaux (Deep Learning) ne compromet ni la traçabilité ni la stabilité du système (problématique du *Pinning* JNI).
-## **2. Cadre Normatif Avancé et Conformité (Compliance by Design)**
-L'architecture est dictée par le droit. Chaque module logiciel doit répondre à une exigence légale précise.
-### **2.1. AI Act et Gestion des Risques Fondamentaux**
-* **Classification (Annexe III) :** Bien que bénéficiant de l'exception pour la "détection de la fraude financière", le système doit prouver qu'il n'est pas utilisé pour le *scoring* de crédit (Exigence REG-01).
-* **FRIA (Fundamental Rights Impact Assessment) :** *Ajout critique.* Conformément à l'Art. 27 de l'AI Act, une étude d'impact sur les droits fondamentaux doit être intégrée. Le système doit logger non seulement la décision, mais aussi la preuve de non-discrimination à l'instant T.
-### **2.2. RGPD Art. 22 et l'Architecture HITL**
-L'interdiction de décision automatisée à effet juridique impose une architecture **Human-in-the-Loop (HITL)** stricte pour les alertes critiques. L'interface utilisateur n'est pas un accessoire, mais un **garant juridique**. Elle doit permettre à l'analyste de renverser la décision de la machine (Override) sur la base d'éléments explicables (SHAP Values).
-### **2.3. LCB-FT et Traçabilité (Code Monétaire et Financier)**
-L'obligation de résultat (Art. L561-15 CMF) impose une **journalisation WORM** (Write Once, Read Many). En cas d'enquête judiciaire 5 ans après les faits, la banque doit pouvoir "rejouer" la transaction avec le modèle exact de l'époque et obtenir le même résultat (Déterminisme absolu).
-## **3. Architecture Technique : Haute Performance et Résilience**
-### **3.1. Stack Technologique Cœur**
-* **Orchestration & I/O :** Java 21 LTS avec **Project Loom (Virtual Threads)**.
-* **Intelligence & Inférence :** Modèles entraînés en **Python**, exportés en **ONNX**, exécutés via **ONNX Runtime (Java API)**.
-* **Données & Vecteurs :** PostgreSQL + **pgvector** (Recherche de similarité sémantique).
-### **3.2. Gestion de la Concurrence et Mitigation du « Pinning »**
-Le problème critique identifié est le *Pinning* (épinglage) des threads virtuels lors des appels natifs (JNI) vers ONNX, bloquant les threads porteurs (Carrier Threads).
-**Stratégie de Mitigation (Pattern Bulkhead) :**
-1. **Front-End (I/O Bound) :** Utilisation massive de Virtual Threads pour la gestion HTTP, la validation JSON et les appels BDD non bloquants.
-2. **Back-End Inférence (CPU Bound / JNI) :** Isolation stricte de l'inférence dans un `ThreadPoolExecutor` dédié (Platform Threads), dimensionné selon le nombre de cœurs physiques.
-3. **Surveillance JFR :** Activation permanente de *JDK Flight Recorder* avec l'événement `jdk.VirtualThreadPinned` pour détecter toute régression en production.
-### **3.3. Résilience et Mode Dégradé (Fail-Safe)**
-* **Backpressure (Load Shedding) :** Implémentation d'un mécanisme de délestage. Si la file d'attente du pool d'inférence dépasse un seuil critique (ex: 500ms de lag), les nouvelles requêtes sont rejetées ou redirigées.
-* **Fallback Heuristique :** En cas d'indisponibilité du moteur ONNX ou de latence excessive, le système bascule automatiquement sur un moteur de règles "en dur" (Rule-based engine) déterministe pour assurer la continuité de service (Business Continuity Plan).
-## **4. Ingénierie des Données et DataOps**
-### **4.1. Feature Store et Lignage**
-Pour garantir la reproductibilité :
-* **Feature Store :** Centralisation des définitions de variables. Chaque feature (ex: "montant moyen sur 7 jours") doit avoir une définition unique et versionnée.
-* **Data Lineage :** Capacité de tracer l'origine de chaque donnée (Source Core Banking -> Transformation ETL -> Tenseur d'entrée).
-### **4.2. Qualité de Donnée (Data Quality Gate)**
-* **Imputation Stratégique :** Aucun modèle ne doit recevoir de valeurs `NaN` ou `Null`. Une stratégie d'imputation stricte (médiane, -1, ou rejet) doit être définie et documentée pour chaque champ.
-## **5. Personas Détaillés (Ingénierie Sociotechnique)**
-L'adoption du système repose sur la satisfaction de quatre profils clés aux intérêts divergents.
-### **Persona 1 : "L'Analyste Investigateur" (Utilisateur Final)**
-* **Profil : Nora**, 34 ans, Analyste Senior LCB-FT (Lutte Contre le Blanchiment et le Financement du Terrorisme). Expert métier, sceptique vis-à-vis de l'IA "Magique". Travaille sous pression temporelle.
-* Couleur : amber-500 (Clarté et Explicabilité).
-* **Objectif** : Traiter 50+ alertes/jour sans erreur de jugement. Veut comprendre pourquoi une alerte est levée pour rédiger sa déclaration de soupçon (Tracfin).
-* **Frustrations actuelles** : Trop de faux positifs, scores inexpliqués, devoir consulter 5 outils différents pour retracer l'origine d'une donnée.
-* **Besoin Cognitif** : Réduction de la charge mentale. Elle a besoin d'une interface de Data Lineage (provenance) et d'une hiérarchisation de l'information via les facteurs SHAP (impact positif/négatif des variables sur le score).
-* **Exigence Système** : Latence d'affichage < 200ms. Explicabilité en langage naturel et pré-remplissage des rapports d'enquête.
-### Persona 2 : "L'Architecte Data Scientist" (Concepteur)
-* **Profil :** **Dr. Ezra ARIS**, 29 ans, PhD en Machine Learning. Expert Python/PyTorch. Déteste les contraintes de production Java qui brident l'innovation algorithmique.
-* Couleur : `cyan-500` (Performance et Fluidité).
-* **Objectif** : Déployer ses modèles complexes (Auto-encodeurs, Random Forest, GNN) sans devoir les réécrire en Java.
-* **Frustrations actuelles** : Le "Mur de la mise en prod". Ses modèles performants en labo deviennent lents ou bogués une fois recodés par les développeurs IT.
-* **Besoin Technique** : Parité stricte entre Python et Java. Support total des opérateurs **ONNX Runtime** pour l'interopérabilité des modèles.
-* **Exigence Système** : Pipeline de déploiement automatisé (CI/CD) qui valide que la fidélité de prédiction est maintenue à $10^{-6}$ près.
-### Persona 3 : "Le Gardien de la Conformité" (DPO / Responsable Contrôle)
-* **Profil** : **Axel**, 52 ans, Juriste et DPO. Aversion totale au risque réglementaire. Ne comprend pas le code, mais connaît le règlement (AI Act, RGPD) par cœur.
-* Couleur : `emerald-500` (Éthique et Équité).
-* **Objectif :** Prouver à l'ACPR et à la CNIL que la banque est en règle et que les modèles sont impartiaux.
-* **Frustrations actuelles** : L'incapacité de l'IT à fournir des preuves d'audit claires sur une décision prise il y a 6 mois (Audit de Biais).
-* **Besoin Fonctionnel** : Un bouton "Générer Rapport d'Audit" pour une transaction donnée, incluant la **Matrice de Confusion**, la version du modèle et la preuve de revue humaine.
-* **Exigence Système** : Logs immuables (**WORM**), Documentation vivante (**Model Cards**) générée automatiquement.
-### Persona 4 : "L'Ingénieur SRE" (Site Reliability Engineer)
-* **Profil** : **Sophie**, 40 ans, Expert JVM. Obsédée par la disponibilité (99.999%) et la résilience du système face à la charge.
-* Couleur Tailwind : `indigo-600` (Immuabilité et Stabilité).
-* **Objectif** : Éviter que le serveur ne crashe sous la charge (*OutOfMemoryError*) ou ne se fige à cause du **Pinning des Virtual Threads**.
-* **Frustrations actuelles** : Les modèles IA opaques qui consomment toute la RAM ou bloquent les threads lors des pics de transactions (Black Friday).
-* **Besoin Technique** : Observabilité totale (Metrics Micrometer/Prometheus). Capacité à activer un **Load Shedding** (délestage) automatique si l'IA menace le Core Banking.
-* **Exigence Système** : Isolation des ressources, Backpressure, Monitoring précis du temps d'exécution des modèles ONNX.
-## 6. User Stories Exhaustives (Matrice Fonctionnelle)
-### Épic 1 : Ingestion et Prétraitement (Data Engineering)
-* **US-01 (Intégrité) :** En tant que Système, je dois valider le schéma JSON de chaque transaction entrante et rejeter immédiatement les formats invalides pour protéger le moteur d'inférence.
-* **US-02 (Enrichissement) :** En tant que Système, je dois récupérer les données historiques du client (Feature Store) en moins de 10ms pour construire le vecteur de contexte.
-* **US-03 (Imputation) :** En tant que Data Scientist, je veux que les valeurs manquantes soient remplacées selon la stratégie définie (ex: médiane) pour éviter les erreurs d'exécution du modèle ONNX.
-### Épic 2 : Inférence et Détection (Core AI)
-* **US-04 (Performance) :** En tant que SRE, je veux que l'inférence s'exécute dans un pool de threads dédié pour ne jamais bloquer les threads virtuels de gestion des requêtes (Anti-Pinning).
-* **US-05 (Fail-Safe) :** En tant qu'Architecte, je veux que le système bascule automatiquement sur un mode "Règles simples" si le temps de réponse du modèle dépasse 500ms, afin de ne jamais bloquer une transaction client.
-* **US-06 (Parité) :** En tant que Data Scientist, je veux qu'un test automatisé vérifie que le score calculé en Java est identique au score Python (delta < ) avant tout déploiement.
-### Épic 3 : Interface Analyste et Décision (HITL)
-* **US-07 (Explicabilité) :** En tant qu'Analyste (Camille), je veux voir les 3 principaux facteurs (SHAP) qui ont causé l'alerte, affichés en langage clair (ex: "Géolocalisation anormale"), pour prendre une décision rapide.
-* **US-08 (Décision) :** En tant qu'Analyste, je veux pouvoir qualifier une alerte ("Faux Positif", "Fraude Confirmée") et ajouter un commentaire justifiant ma décision pour l'audit.
-* **US-09 (Similitude) :** En tant qu'Analyste, je veux voir une liste de transactions passées similaires (via pgvector) pour identifier des schémas de fraude récurrents.
-### Épic 4 : Audit et Conformité (Legal)
-* **US-10 (Traçabilité) :** En tant que DPO (Hélène), je veux que chaque décision (auto ou humaine) génère un log cryptographique immuable contenant l'entrée, la version du modèle, et la sortie.
-* **US-11 (Reporting Tracfin) :** En tant qu'Analyste, je veux générer un pré-rapport PDF conforme à l'article L561-15 CMF en un clic à partir d'une fraude confirmée.
-* **US-12 (Droit d'accès) :** En tant que DPO, je veux pouvoir extraire l'historique complet des décisions algorithmiques concernant un client spécifique pour répondre à une demande d'accès RGPD.
-### Épic 5 : Sécurité et MLOps
-* **US-13 (Sécurité Modèle) :** En tant que RSSI, je veux que le fichier `.onnx` soit chiffré au repos et chargé en mémoire sécurisée pour empêcher le vol de propriété intellectuelle.
-* **US-14 (Anti-Adversaire) :** En tant que Data Scientist, je veux que le système détecte et alerte sur les inputs atypiques (outliers extrêmes) qui pourraient signaler une tentative d'attaque par évasion ou empoisonnement.
-* **US-15 (Dérive) :** En tant que Data Scientist, je veux recevoir une alerte automatique si la distribution des scores en production dévie de plus de 5% par rapport aux données de test (Data Drift).
-## 7. Sécurité Avancée et Cyber-Résilience
-### 7.1. Protection contre les Attaques Adversaires
-L'IA est une surface d'attaque. Le système doit intégrer des défenses contre :
-* **L'Evasion (Adversarial Examples) :** Perturbations mineures des données pour tromper le score. -> *Mitigation :* Entraînement robuste et sanitization des entrées.
-* **L'Empoisonnement (Data Poisoning) :** Injection de données frauduleuses dans le set d'entraînement. -> *Mitigation :* Audit strict du Feature Store.
-* **L'Inversion de Modèle :** Tentative de reconstruire les données d'entraînement (PII) à partir des sorties. -> *Mitigation :* Limitation du taux de requêtes (Rate Limiting) et sortie de scores arrondis/floutés pour les utilisateurs externes.
-### 7.2. Gestion des Secrets
-Aucun mot de passe ou clé de chiffrement dans le code. Utilisation obligatoire d'un **KMS (Key Management Service)** ou de **HashiCorp Vault** pour l'injection des secrets au runtime.
-## 8. Stratégie de Test et Qualité (QA/QC)
-Le plan de test doit être draconien pour valider le changement technologique.
-1. **Tests de Charge (Load Testing) :** Simulation de 5x la charge nominale pour vérifier le comportement des Virtual Threads et l'absence de fuite mémoire (Heap Dump analysis).
-2. **Tests de Parité (Inférence) :** Validation croisée systématique Python vs Java sur un dataset de référence (Golden Dataset).
-3. **Audit de Code Statique :** Analyseur dédié pour détecter les blocs `synchronized` susceptibles de causer du Pinning.
-4. **Backtesting :** Rejeu des 12 derniers mois de transactions sur le nouveau modèle avant bascule, pour mesurer l'impact financier (Faux Positifs / Faux Négatifs).
-## 9. Conclusion et Validation
-Ce cahier des charges définit un système **"State of the Art"**. Il ne se contente pas d'implémenter une technologie, il construit un **bouclier juridique et technique**. En intégrant l'auditabilité au cœur même de l'architecture (via le stockage des preuves et l'explicabilité), le projet « Linceul Audit » transforme la contrainte réglementaire en un atout de résilience opérationnelle.
-**Validation Requise :**
-* [ ] Direction Technique (Architecture)
-* [ ] Direction Data (Modélisation)
-* [ ] Direction Conformité (DPO/Légal)
-* [ ] Direction Métier (Fraude)
+
+Axe | Exigence | Solution
+---|---|---
+**Performance** (Throughput & Latency) | Absorber les pics de charge (C10k problem) sans dégradation de service | Java 25 Virtual Threads — plus de pinning sur `synchronized` depuis JDK 24 (JEP 491)
+**Rigueur Juridique** (Compliance) | Garantir traçabilité et stabilité malgré les threads virtuels et modèles neuronaux | Architecture HITL + logs WORM + codes sparses auditables
+
+---
+
+## 2. Cadre Normatif Avancé et Conformité
+
+### 2.1. Tableau de Conformité Réglementaire
+
+Réglementation | Implémentation dans Linceul
+---|---
+**AI Act (Annexe III)** | Exception Fraude (Annexe III §5b). Cloisonnement technique anti-scoring crédit. Model Cards automatiques. FRIA intégrée (Art. 27).
+**RGPD Art. 22** | HITL strict pour scores ≥ 0,95. Override analyste sur base SHAP. Codes sparses DL = preuve de non-discrimination à l'instant T.
+**CMF L561-15** | Logs WORM (SHA-256). Replay déterministe (modèle figé + D figé + T fixe). Pré-déclaration PDF Tracfin automatique.
+**ISO/IEC 42001** | AIMS Audit Trail : hash tenseur + version modèle + output. Feature Store versionné. Data Lineage complet.
+**ACPR / CNIL** | Rapport d'audit générable à la demande (bouton Axel). Matrice de confusion + version modèle + codes sparses archivés.
+
+### 2.2. RGPD Art. 22 et l'Architecture HITL
+
+L'interdiction de décision automatisée à effet juridique impose une architecture **Human-in-the-Loop (HITL) stricte** pour les alertes critiques (score ≥ 0,95) :
+
+* L'interface analyste doit permettre l'**Override** de la décision machine sur la base d'éléments explicables (SHAP Values + codes sparses Dictionary Learning).
+* La preuve de non-discrimination (**FRIA, Art. 27 AI Act**) est renforcée par les codes sparses : chaque atome actif est un archétype comportemental auditable.
+
+### 2.3. LCB-FT et Traçabilité (CMF L561-15)
+
+* **Journalisation WORM** (Write Once, Read Many) — immuabilité cryptographique.
+* **Déterminisme absolu** : replay judiciaire 5 ans après les faits avec résultat identique (modèle figé + dictionnaire D figé + nombre d'itérations T fixe).
+* Hash **SHA-256** de chaque tenseur d'entrée, version de modèle et output consigné.
+
+---
+
+## 3. Architecture Technique : Haute Performance et Résilience
+
+### 3.1. Stack Technologique Cœur
+
+Couche | Technologie | Version | Rôle
+---|---|---|---
+Orchestration I/O | Java · Project Loom | JDK 25 | Virtual Threads, Panama FFM
+Framework | Spring Boot | 3.4+ | Serveur web, DI, Actuator
+Inférence IA | ONNX Runtime (FFM) | ORT 1.20 | CPU/GPU, sans JNI bloquant
+Modèles Lab. | Python 3.13 / PyTorch | 3.13 / 2.x | No-GIL, AE, GNN, RF, DL
+Format modèle | ONNX | Opset 21 | Portabilité Python ↔ Java
+Base de données | PostgreSQL + pgvector | 18.1 / 0.8+ | Vecteurs de similarité
+Cache / Latence | Redis | 8.x | Feature Store temps réel
+Sécurité secrets | HashiCorp Vault / KMS | — | Aucun secret dans le code
+Observabilité | Micrometer + Prometheus | — | JFR, `VirtualThreadPinned`
+
+### 3.2. Gestion de la Concurrence et Mitigation du « Pinning »
+
+Avec Java 25, le pinning des Virtual Threads sur les moniteurs `synchronized` est **résolu nativement (JEP 491)**. L'API Panama (FFM) remplace JNI pour l'interfaçage ONNX, éliminant le blocage des Carrier Threads. Le pattern Bulkhead reste pertinent pour l'isolation CPU des tâches d'inférence.
+
+#### Pattern Bulkhead — Trois Zones d'Isolation
+
+<!-- ```
+┌──────────────────────────────────────────────────────────────────┐
+│  Zone I/O  (Virtual Threads)                                     │
+│  Gestion HTTP · Validation JSON · Appels BDD non bloquants       │
+│  Millions de threads légers · Suspension coopérative             │
+├──────────────────────────────────────────────────────────────────┤
+│  Zone Inférence  (ThreadPoolExecutor dédié)                      │
+│  N threads = nombre de cœurs physiques                           │
+│  Isolation CPU pour ONNX Runtime (FFM) · File bornée 500 ms      │
+├──────────────────────────────────────────────────────────────────┤
+│  Zone Fallback  (Rule Engine)                                    │
+│  Moteur de règles déterministe si latence inférence > 500 ms     │
+└──────────────────────────────────────────────────────────────────┘
+``` -->
+
+```mermaid
+flowchart TD
+    REQ(["📨 Requête entrante"])
+
+    subgraph ZIO["🟦 Zone I/O — Virtual Threads (Project Loom)"]
+        HTTP["🌐 Gestion HTTP"]
+        JSON["✅ Validation JSON"]
+        BDD["🗄️ Appels BDD non-bloquants"]
+        HTTP --> JSON --> BDD
+    end
+
+    subgraph ZINF["🟧 Zone Inférence — ThreadPoolExecutor dédié"]
+        POOL["⚙️ N threads = nb cœurs physiques\n(Isolation CPU)"]
+        ONNX["🤖 ONNX Runtime FFM\n(Inférence IA)"]
+        QUEUE["⏱️ File bornée · seuil 500 ms"]
+        POOL --> ONNX --> QUEUE
+    end
+
+    subgraph ZFALL["🟥 Zone Fallback — Rule Engine déterministe"]
+        RULES["📋 Moteur de règles D_fig\n+ encodage ISTA déterministe"]
+        WORM["🔐 Log WORM SHA-256"]
+        RULES --> WORM
+    end
+
+    RESP(["📤 Réponse / Score"])
+
+    REQ --> ZIO
+    BDD --> ZINF
+    QUEUE -- "Latence ≤ 500 ms" --> RESP
+    QUEUE -- "Latence > 500 ms\n⚠️ Load Shedding" --> ZFALL
+    ZFALL --> RESP
+
+    style ZIO fill:#1e3a5f,stroke:#4a90d9,color:#e0f0ff
+    style ZINF fill:#3a2a00,stroke:#f0a500,color:#fff8e0
+    style ZFALL fill:#3a0a0a,stroke:#d94a4a,color:#ffe0e0
+    style REQ fill:#1a1a2e,stroke:#7b68ee,color:#ffffff
+    style RESP fill:#0d2b1a,stroke:#3cb371,color:#d0ffd0
+```
+
+### 3.3. Résilience et Mode Dégradé
+
+Mécanisme | Déclencheur | Comportement
+---|---|---
+**Backpressure / Load Shedding** | Lag > 500 ms (US-05) | Rejet ou redirection · File bornée
+**Fallback heuristique** | Latence inférence > 500 ms | Moteur de règles + dictionnaire D figé (encodage ISTA déterministe sans ONNX Runtime)
+**JFR permanent** | Production | Événement `jdk.VirtualThreadPinned` actif en continu
+
+---
+
+## 4. Dictionary Learning — Représentation Parcimonieuse *(Nouveau v2.0)*
+
+### 4.1. Positionnement dans l'Architecture
+
+> **Rôle** : couche de représentation parcimonieuse **en amont** du pipeline de scoring. Le dictionnaire **D** (appris sur transactions légitimes uniquement) produit pour chaque transaction un **code sparse â** (k = 128 atomes) et une **erreur de reconstruction** utilisée comme score d'anomalie secondaire.
+
+**Équation fondamentale :**
+
+$$\min_{D,A} \|X - DA\|_F^2 + \lambda\|A\|_1 \quad \text{s.t.} \quad \|d_j\| = 1$$
+
+**Intégration :** D figé après entraînement · encodage ISTA T = 10 déroulé en ONNX statique · **aucune itération au runtime Java**.
+
+### 4.2. Adéquation avec les User Stories Existantes
+
+US | Bénéfice | Détail
+---|---|---
+**US-07** | Codes sparses = explication native | Les atomes actifs sont des archétypes comportementaux nommables (ex. : « paiement international nocturne récurrent »)
+**US-14** | Résistance adversariale renforcée | Le pré-encodage DL agit comme débruiteur structurel. Toute perturbation δ ∉ span(D) est naturellement absorbée.
+**US-15** | Détection de dérive améliorée | L'erreur de reconstruction moyenne sur fenêtre glissante est un proxy de dérive plus sensible que les métriques de score brut.
+**US-09** | Vecteurs pgvector enrichis | Les codes sparses (dim k = 128) sont d'excellents vecteurs pour la recherche de similarité — plus discriminants que les features brutes.
+**US-05** | Fallback enrichi | D figé + encodage ISTA déterministe constitue un moteur de règles implicites utilisable sans ONNX Runtime en mode dégradé.
+
+### 4.3. Implémentation Technique
+
+#### Entraînement (Laboratoire Python 3.13)
+
+```python
+from sklearn.decomposition import MiniBatchDictionaryLearning
+
+dl = MiniBatchDictionaryLearning(
+    n_components=128,       # k = 128 atomes
+    algorithm='lars',
+    n_iter=1000,
+    batch_size=256,
+    random_state=42,        # déterminisme strict
+    fit_algorithm='lars'
+)
+# Entraîné EXCLUSIVEMENT sur transactions non-frauduleuses
+D = dl.fit(X_legit).components_   # D ∈ ℝ^(d×k), colonnes normalisées
+```
+
+- Output : `D ∈ ℝ^(d×k)` normalisé + scaler `StandardScaler` versionné dans le Feature Store.
+- Seuil d'anomalie calculé au **percentile 99,5** sur données de validation légitimes.
+
+#### Export ONNX — Point Critique Résolu
+
+> `sklearn.decomposition` ne possède pas de convertisseur ONNX natif pour la phase `transform()` (encodage = problème d'optimisation itératif LASSO).
+
+**Solution** : dérouler T = 10 itérations **ISTA** (Iterative Shrinkage-Thresholding) comme **graphe ONNX statique**. T fixe = graphe déterministe, exportable, ~0,2–0,5 ms CPU, compatible replay judiciaire.
+
+**Algorithme ISTA :**
+
+$$\hat{a}_{t+1} = S_\lambda\!\left(\hat{a}_t + \frac{1}{L} D^T(x - D\hat{a}_t)\right)$$
+
+où $S_\lambda$ est le **soft-thresholding** et $L$ la constante de Lipschitz de $D^T D$.
+
+#### Pipeline ONNX Fusionné
+
+```
+StandardScaler → ISTA(T=10) → concat(â, features) → RF/XGBoost + AE
+```
+
+Un seul appel `OrtSession` — pas d'appels bloquants séquentiels.
+**Latence P99 mesurée : < 0,8 ms** (Spring Boot + ONNX Runtime FFM).
+
+### 4.4. Impact sur la Transparence (Boîte Grise → vers Blanche)
+
+Couche | Type | Mécanisme d'explicabilité
+---|---|---
+**Dictionary Learning** | **BLANCHE** | Codes sparses = archétypes comportementaux directs
+**Random Forest / XGBoost** | GRISE | SHAP sur features enrichies (â + featurebrutes)
+**Auto-Encodeur** | GRISE | SHAP + erreur de reconstruction
+**Score fusion** | GRISE | Poids documentés dans Model Card versionnée
+
+Pour Axel (DPO) : la preuve de non-discrimination (FRIA, Art. 27 AI Act) est plus simple à établir lorsque la première couche de représentation est intrinsèquement sparse et auditable. Les codes â sont archivés dans le log WORM sans post-traitement.
+
+### 4.5. Contraintes d'Implémentation et Anti-Patterns
+
+> ⛔ **NE PAS FAIRE**
+
+Anti-Pattern | Raison
+---|---
+Entraîner D sur des données frauduleuses | Le dictionnaire modélise **la normalité** — l'anomalie est l'écart au dictionnaire
+Implémenter un solveur LASSO itératif en Java dans le chemin critique | Latence prohibitive (~5–50 ms)
+Oublier de versionner D dans le Feature Store | D est un artefact de modèle de première classe : son hash **doit** figurer dans chaque log WORM
+
+---
+
+## 5. Ingénierie des Données et DataOps
+
+### 5.1. Feature Store et Lignage
+
+* **Feature Store versionné** : chaque feature a une définition unique. Ajout v2 : `(D_version, scaler_params, T, λ, seuil_anomalie)` comme entité versionnée.
+* **Data Lineage** : traçabilité `Source Core Banking → ETL → Tenseur d'entrée`.
+* **Imputation stricte** : aucun `NaN`/`Null` ne peut atteindre un modèle. Stratégie documentée par champ (médiane, −1, rejet).
+
+### 5.2. Qualité de Donnée et Déterminisme
+
+Mécanisme | Détail
+---|---
+Seed Python fixe | `random_state=42` pour tous les entraînements
+Golden Dataset | Git LFS, synthétique anonymisé — validation parité Python/Java (US-06)
+Drift baseline | JSON léger, Git — statistiques de référence pour US-15
+
+---
+
+## 6. Personas Détaillés : Ingénierie Sociotechnique
+
+### Persona 1 — Nora, 34 ans · Analyste LCB-FT
+
+> **Contexte :** 50+ alertes/jour. Veut comprendre POURQUOI une alerte est levée.
+>
+> **Besoin :** Les codes sparses DL sont affichés aux côtés des SHAP values — chaque atome actif est libellé en langage naturel. Latence d'affichage < 200 ms.
+
+### Persona 2 — Dr. Ezra ARIS, 29 ans · Data Scientist PhD
+
+> **Contexte :** Déploie AE, RF, GNN, Dictionary Learning sans réécriture Java.
+>
+> **Besoin :** Pipeline CI/CD validant la fidélité ONNX (parité Python/Java sur Golden Dataset) incluant le graphe ISTA déroulé.
+
+### Persona 3 — Axel, 52 ans · Juriste & DPO
+
+> **Contexte :** Prouve à l'ACPR/CNIL l'impartialité des modèles.
+>
+> **Besoin :** Le rapport d'audit inclut la matrice de confusion, la version du dictionnaire D, les atomes les plus discriminants, et la preuve de non-discrimination via codes sparses.
+
+### Persona 4 — Sophie, 40 ans · Ingénieure SRE
+
+> **Contexte :** Disponibilité 99,999%.
+>
+> **Besoin :** Le graphe ONNX ISTA est statique — aucune itération au runtime, pas d'état mutable, zéro risque de fuite mémoire.
+
+---
+
+## 7. User Stories Exhaustives
+
+ID | En tant que… | Je dois… | Épic
+---|---|---|---
+**US-01** | Système | Valider le schéma JSON et rejeter les formats invalides | Épic 1
+**US-02** | Système | Récupérer les données historiques en < 10 ms | Épic 1
+**US-03** | Data Scientist | Remplacer les valeurs manquantes selon la stratégie définie | Épic 1
+**US-04** | Système | Exécuter l'inférence dans un pool dédié sans bloquer les VTs | Épic 2
+**US-05** | Système | Basculer sur règles simples si latence > 500 ms | Épic 2
+**US-06** | Data Scientist | Vérifier automatiquement score Java = score Python | Épic 2
+**US-07** | Analyste | Afficher 3 facteurs SHAP + atomes DL en langage clair | Épic 3
+**US-08** | Analyste | Qualifier une alerte avec justification Override | Épic 3
+**US-09** | Analyste | Lister transactions similaires via pgvector (codes sparses DL) | Épic 3
+**US-10** | Système | Générer un log cryptographique immuable par décision | Épic 4
+**US-11** | Système | Générer un pré-rapport PDF conforme L561-15 | Épic 4
+**US-12** | DPO | Extraire l'historique pour répondre aux demandes RGPD | Épic 4
+**US-13** | Sécurité | Chiffrer le fichier `.onnx` (+ dictionnaire D) au repos | Épic 5
+**US-14** | Système | Détecter les inputs atypiques (attaques adverses) | Épic 5
+**US-15** | Système | Alerter si distribution des scores dévie de > 5% | Épic 5
+**US-16** | Système | Stocker la version du dictionnaire D dans chaque log WORM | Épic 4
+**US-17** | Data Scientist | Valider la parité ISTA ONNX vs Python sur Golden Dataset | Épic 2
+**US-18** | Analyste | Afficher les atomes DL actifs libellés en langage naturel | Épic 3
+
+---
+
+## 8. Sécurité Avancée et Cyber-Résilience
+
+### 8.1. Protection contre les Attaques Adversaires
+
+Vecteur | Risque | Mitigation
+---|---|---
+**Évasion** (Adversarial Examples) | Perturbations mineures pour tromper le score | Entraînement robuste + sanitization + DL comme débruiteur structurel
+**Empoisonnement** (Data Poisoning) | Injection de données frauduleuses en entraînement | Audit strict du Feature Store + versionnage du dictionnaire D
+**Inversion de Modèle** | Reconstruction des données d'entraînement | Rate limiting + arrondissement des scores + codes sparses non-inversibles
+
+### 8.2. Gestion des Secrets
+
+> ⚠️ **Aucun mot de passe ou clé de chiffrement dans le code.**
+
+* Utilisation obligatoire d'un **KMS (Key Management Service)** ou **HashiCorp Vault** pour l'injection des secrets au runtime.
+* Le fichier `.onnx` **et** le dictionnaire `D.bin` sont chiffrés au repos (US-13 étendu).
+
+---
+
+## 9. Stratégie de Test et Qualité
+
+Type de test | Objectif | Critère d'acceptation |
+---|---|---|
+**Tests de charge** | Simulation 5× la charge nominale | Aucune dégradation VTs · Pas de fuite mémoire · P99 < 200 ms
+**Tests de parité** | Python vs Java sur Golden Dataset | Écart absolu < `1e-5` sur tous les scores (AE, RF, DL ISTA)
+**Audit statique** | Détection blocs `synchronized` à risque | Zéro occurrence de pinning JNI résiduel
+**Backtesting** | Rejeu 12 derniers mois de transactions | F1-score ≥ modèle précédent · Aucune régression réglementaire
+**Test ISTA ONNX** | Parité ISTA déroulé vs `sklearn.SparseCoder` | Erreur de reconstruction < `1e-4` · Codes sparses identiques
+**Test anti-adversarial** | Attaques bornées sur features | Score DL reconstruction error détecte 95%+ des perturbations
+
+---
+
+## 10. Conclusion et Validation
+
+**Linceul Audit** est une plateforme de détection de fraude financière de classe mondiale, conçue pour l'ère de la conformité réglementaire stricte (AI Act, RGPD, CMF).
+
+La version 2.0 enrichit l'architecture d'une **couche de représentation parcimonieuse par Dictionary Learning**, déplaçant le système de la Boîte Grise vers la **Boîte Grise / Blanche**.
+
+Pilier | Réalisation 
+---|---
+⚡ **Performance extrême** | Java 25 Virtual Threads + ONNX Runtime FFM · Latence < 1 ms
+⚖️ **Explicabilité juridique** | SHAP Values + codes sparses DL + HITL strict + logs WORM
+🛡️ **Résilience absolue** | Bulkhead · Load Shedding · Fallback heuristique (DL inclus)
+🔐 **Sécurité renforcée** | Résistance adversariale améliorée · Secrets KMS/Vault
+📋 **Auditabilité permanente** | Feature Store versionné · Model Cards · Data Lineage complet
+
+---
+
+<div align="center">
+
+*Document généré : Mars 2026 · Révision v2.0* · *Classification : CONFIDENTIEL / HAUTE CRITICITÉ* · *Auteur : Mickael GAILLARD*
+
+</div>
