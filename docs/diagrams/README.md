@@ -185,5 +185,6 @@ Matrice des responsabilités fonctionnelles (Use Cases UML).
 Contraintes : latence d'affichage < 200ms, SHAP top-3 en langage naturel, atomes Dictionary Learning interprétables.  
 Bouton Override avec justification obligatoire, lien Data Lineage contextuel, génération rapport PDF L561-15.
 
-___
+<hr><div align="center">
+
 [← README](../../) · [Contribuer](../../CONTRIBUTING.md) · [Sécurité](../../SECURITY.md) · [Code de Conduite](../../CODE_OF_CONDUCT.md)
