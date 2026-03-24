@@ -187,4 +187,4 @@ Bouton Override avec justification obligatoire, lien Data Lineage contextuel, g�
 
 <hr><div align="center">
 
-[← README](../../) · [Contribuer](../../CONTRIBUTING.md) · [Sécurité](../../SECURITY.md) · [Code de Conduite](../../CODE_OF_CONDUCT.md)
+[← README](../../README.md) · [Contribuer](../../CONTRIBUTING.md) · [Sécurité](../../SECURITY.md) · [Code de Conduite](../../CODE_OF_CONDUCT.md)
