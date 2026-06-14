@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.vscode/
+_ozr/
+bootstrap-branches-git.sh
+README linceul.md
+linceul-audit
+assets/infographics/.DS_Store
+data/
+docs/complianceInfrastructure/index.html
+docs/diagrams/diagrammes.txt
+docs/diagrams/testPyramid/README.md
+docs/spec/spec
+post/
+main.py
