@@ -12,7 +12,7 @@
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-Machine_Learning-F7931E?style=flat&logo=scikitlearn&logoColor=white) 
 ![PyTorch](https://img.shields.io/badge/pytorch-Deep%20Learning-EE4C2C?style=flat&logo=pytorch&logoColor=white) 
 ![ONNX Runtime](https://img.shields.io/badge/onnx-Runtime-005CED?style=flat&logo=onnx&logoColor=white) 
-![PostgreSQL](https://img.shields.io/badge/postgresql-18.x-4169E1?style=flat&logo=postgresql&logoColor=white) 
+![PostgreSQL](https://img.shields.io/badge/postgresql-18-4169E1?style=flat&logo=postgresql&logoColor=white) 
 ![pgvector](https://img.shields.io/badge/extension-PG_Vector-0F9D58?style=flat&logo=postgresql&logoColor=white) 
 ![Redis](https://img.shields.io/badge/redis-8%20(cache%20%26%20latence)-DC382D?style=flat&logo=redis&logoColor=white) 
 ![Sécurité](https://img.shields.io/badge/sécurité-TLS%201.3%20%7C%20AES--256-232F3E?style=flat&logo=letsencrypt&logoColor=white)
@@ -53,7 +53,7 @@ Le projet repose sur une distinction stricte entre le Laboratoire (Recherche) et
   * Virtual Threads : Natifs et optimisés (plus de pinning sur les moniteurs synchronized depuis JDK 24).
   * Foreign Function & Memory API (Panama) : Utilisé pour l'interfaçage mémoire direct avec le moteur d'inférence, remplaçant JNI.
 * Framework : Spring Boot 3.4+ (Support natif Java 25).
-* Base de Données : PostgreSQL 18.1 avec extension pgvector v0.8+ pour la recherche vectorielle de fraudes similaires.
+* Base de Données : PostgreSQL 18.4 avec extension pgvector v0.8+ pour la recherche vectorielle de fraudes similaires.
 * Moteur d'Inférence : ONNX Runtime (Java API FFM variant).
 ## **⚖️ Conformité Réglementaire**
 Le système est conçu pour naviguer dans le cadre légal strict de 2026.
@@ -72,7 +72,7 @@ ISO 42001 | AIMS Audit Trail : Journalisation cryptographique de chaque inféren
 ### **Prérequis**
 Java 25 (Oracle)  
 Python 3.13  
-PostgreSQL 18.1
+PostgreSQL 18.4
 ### **Procédure**
 1. Démarrer l'infrastructure de données
 2. Préparer le modèle (Python 3.13)
