@@ -139,7 +139,7 @@ ___
 
 <div align="center">
 
-[← README](README.md) · [Documentation](docs/) · [Contribuer](CONTRIBUTING.md)
+[← Accueil](README.md) · [Documentation](docs/) · [Contribution](CONTRIBUTING.md)
 
 ___
 © 2026 - Projet Linceul Audit. Tous droits réservés.
