@@ -10,6 +10,7 @@
 ![Spring Boot](https://img.shields.io/badge/spring_boot-3.x-6DB33F?style=flat&logo=springboot&logoColor=white) 
 ![Python](https://img.shields.io/badge/python-3.13-blue?style=flat&logo=python&logoColor=FFD43B) 
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-Machine_Learning-F7931E?style=flat&logo=scikitlearn&logoColor=white) 
+![Dictionary Learning](https://img.shields.io/badge/dictionary_learning-Sparse%20Coding%20%7C%20K--SVD-8A2BE2?style=flat&logo=python&logoColor=white) 
 ![PyTorch](https://img.shields.io/badge/pytorch-Deep%20Learning-EE4C2C?style=flat&logo=pytorch&logoColor=white) 
 ![ONNX Runtime](https://img.shields.io/badge/onnx-Runtime-005CED?style=flat&logo=onnx&logoColor=white) 
 ![PostgreSQL](https://img.shields.io/badge/postgresql-18-4169E1?style=flat&logo=postgresql&logoColor=white) 
