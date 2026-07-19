@@ -134,7 +134,7 @@ linceul-audit/
 
 <hr><div align="center">
 
-[Documentation](docs/) · [Contribuer](CONTRIBUTING.md) · [Sécurité](SECURITY.md) · [Code de Conduite](CODE_OF_CONDUCT.md)
+[Documentation](docs/) · [Contribution](CONTRIBUTING.md) · [Sécurité](SECURITY.md) · [Code de Conduite](CODE_OF_CONDUCT.md)
 
 © 2026 - Projet Linceul Audit. Tous droits réservés.
 </div>
