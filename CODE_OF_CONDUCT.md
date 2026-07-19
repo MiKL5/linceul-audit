@@ -120,7 +120,7 @@ ___
 
 <div align="center">
 
-[← Retour README](README.md) · [Contribuer](CONTRIBUTING.md) · [Sécurité](SECURITY.md)
+[← Accueil](README.md) · [Contribution](CONTRIBUTING.md) · [Sécurité](SECURITY.md)
 
 © 2026 — Projet Linceul Audit. Tous droits réservés.
 
