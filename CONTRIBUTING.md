@@ -313,7 +313,7 @@ Réglementation | Obligation pour le contributeur
 
 <div align="center">
 
-[← README](README.md) · [Documentation](docs/) · [Sécurité](SECURITY.md)
+[← Accueil](README.md) · [Documentation](docs/) · [Sécurité](SECURITY.md)
 
 ___
 © 2026 - Projet Linceul Audit. Tous droits réservés.
