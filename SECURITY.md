@@ -1,11 +1,13 @@
 # **SECURITY** <a href="https://github.com/MiKL5/linceul-audit"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 <div align="center">
 
-[![Classification](https://img.shields.io/badge/Classification-CONFIDENTIEL%20%2F%20HAUTE%20CRITICITÉ-red?style=flat)](docs/spec)
-[![RGPD](https://img.shields.io/badge/RGPD-Art.%2032%20%7C%2033-003399?style=flat&logo=europeancentralbank&logoColor=white)](docs/compliance)
-[![AI Act](https://img.shields.io/badge/AI%20Act-Art.%209%20Risk%20Management-003399?style=flat)](docs/compliance)
-[![ISO 27001](https://img.shields.io/badge/ISO-27001%20Aligned-lightgrey?style=flat)](docs/compliance)
-[![Disclosure](https://img.shields.io/badge/Disclosure-Responsible-green?style=flat)](.)
+[![Classification](https://img.shields.io/badge/Classification-CONFIDENTIEL%20%2F%20HAUTE%20CRITICITÉ-red?style=flat&logo=lock&logoColor=white)](docs/spec)
+[![AI Act](https://img.shields.io/badge/AI%20Act-Annexe%20III%20%7C%20Art.27-003399?style=flat&logo=europeanunion&logoColor=white)](docs/compliance)
+[![RGPD](https://img.shields.io/badge/RGPD-Art.22%20%7C%20Art.32%20%7C%20Art.33-003399?style=flat&logo=europeanunion&logoColor=white)](docs/compliance)
+[![CMF L561-15](https://img.shields.io/badge/CMF-L561--15%20(WORM%20%26%20Tracfin)-0055A4?style=flat&logo=fr&logoColor=white)](docs/compliance)
+[![ISO/IEC 42001](https://img.shields.io/badge/ISO%2FIEC-Aligné_42001%20(AIMS)-0066CC?style=flat&logo=iso&logoColor=white)](docs/compliance)
+[![ACPR/CNIL](https://img.shields.io/badge/ACPR%2FCNIL-Aligné-0055A4?style=flat&logo=gavel&logoColor=white)](docs/compliance)
+[![Disclosure](https://img.shields.io/badge/Disclosure-Responsible-green?style=flat&logo=shield-check&logoColor=white)](.)
 
 </div>
 
@@ -16,25 +18,20 @@
 ---
 
 ## Versions supportées
-
 Version | Supportée | Notes
 ---|---|---
 `master` (production) | ✅ Patches prioritaires sous 7 jours | Branche protégée — production certifiée
 `develop` (HEAD) | ✅ Activement maintenue | Intégration continue
 `release/*` en cours | ✅ Gel du code — patches appliqués | Phase de stabilisation
 Versions `< v1.0.0` | ⚠️ Best-effort uniquement | Aucune garantie de patch
-
 ## Signalement d'une vulnérabilité
-
 ### ⚠️ Ne jamais créer d'issue publique GitHub
-
 Pour toute vulnérabilité de sécurité, **n'ouvrez pas d'issue publique**. Une divulgation prématurée pourrait :
 * Exposer des données financières sensibles de clients
 * Révéler les mécanismes de détection de fraude à des acteurs malveillants
 * Constituer une violation du RGPD Art. 32 et de l'obligation de confidentialité CMF
-
+<!-- * **Délai de correction** : Les vulnérabilités critiques seront corrigées sous **45 jours** (ou moins selon la sévérité). -->
 ### Canal de signalement officiel
-
 **Option 1 — GitHub Security Advisories (recommandé) :**  
 `Security` → `Advisories` → `Report a vulnerability` sur ce dépôt
 
@@ -44,9 +41,7 @@ Rôle | Contact
 ---|---
 Responsable Sécurité (RSSI) | `[À COMPLÉTER]`
 DPO — Données Personnelles | `[À COMPLÉTER]`
-
 ### Informations à fournir dans le rapport
-
 ```
 Titre          : Description concise
 Criticité      : Critique / Haute / Moyenne / Faible  (CVSS v3.1 si possible)
@@ -56,23 +51,16 @@ Reproduction   : Étapes détaillées et reproductibles
 Impact         : Données potentiellement exposées, vecteur d'attaque, périmètre
 Preuve (PoC)   : Code ou capture d'écran (joint en pièce chiffrée pour les critiques)
 ```
-
 > Pour les vulnérabilités **Critiques**, chiffrer le rapport avec la clé GPG publique du projet `[À PUBLIER]` avant envoi.
-
 ## Délais de réponse engagés
-
 Criticité | Accusé de réception | Analyse initiale | Patch déployé | Divulgation publique
 ---|---|---|---|---
 🔴 Critique (CVSS ≥ 9.0) | 24 h|48 h | 7 jours | Après patch + 7 jours
 🟠 Haute (CVSS 7.0–8.9) | 48 h | 5 jours|30 jours | Après patch + 14 jours
 🟡 Moyenne (CVSS 4.0–6.9) | 72 h | 7 jours|60 jours | Après patch + 30 jours
 🟢 Faible (CVSS < 4.0) | 1 semaine|14 jours | 90 jours|Discrétionnaire
-
-
 ## Périmètre de sécurité
-
 ### ✅ In Scope — Vulnérabilités prioritaires
-
 **Critiques**
 * Injection ou manipulation du pipeline d'inférence (contournement de la détection de fraude)
 * Exfiltration de données financières ou personnelles (RGPD Art. 32)
@@ -90,14 +78,11 @@ Criticité | Accusé de réception | Analyse initiale | Patch déployé | Divulg
 * Attaques sur la chaîne d'approvisionnement (supply chain — dépendances empoisonnées)
 * Mauvaise configuration des Virtual Threads induisant un Pinning non détecté
 * Dérive du modèle non détectée permettant de contourner la détection (US-15)
-
 ### ❌ Out of Scope
-
 * Attaques nécessitant un accès physique non autorisé à la machine
 * Ingénierie sociale ciblant les contributeurs du projet
 * Vulnérabilités dans les dépendances tierces sans patch disponible de leur mainteneur
 * Tests de charge / DoS sur les environnements de développement ou de staging
-
 ## Architecture de sécurité en place
 
 <details>
@@ -119,9 +104,7 @@ Couche|Mesure|Référence
 </details>
 
 ---
-
 ## Politique de divulgation publique
-
 Une fois le patch déployé sur `master`, la procédure de divulgation est la suivante :
 
 1. **GitHub Security Advisory** public créé avec CVE associé (si applicable)
@@ -141,4 +124,3 @@ ___
 
 ___
 © 2026 - Projet Linceul Audit. Tous droits réservés.
-</div>
