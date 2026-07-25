@@ -309,7 +309,7 @@ Réglementation | Obligation pour le contributeur
 **CMF L561-15** | Les logs de décision sont WORM — toute modification du format de log nécessite une revue DPO préalable
 **ISO/IEC 42001** | Les Model Cards (`docs/compliance/model-cards/`) sont mises à jour à chaque nouvelle version de modèle déployée
 
----
+___
 
 <div align="center">
 
