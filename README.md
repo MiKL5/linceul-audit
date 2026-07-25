@@ -6,25 +6,27 @@
 <div align="center">
 
 ![Java](https://img.shields.io/badge/java-25%20LTS-orange?style=flat&logo=openjdk&logoColor=white)
-![Project Loom](https://img.shields.io/badge/java-Project%20Loom%20(Virtual%20Threads)-red?style=flat&logo=openjdk&logoColor=white)
+![Project Loom](https://img.shields.io/badge/java-Project%20Loom%20(Virtual%20Threads)-orange?style=flat&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/spring_boot-3.x-6DB33F?style=flat&logo=springboot&logoColor=white) 
-![Python](https://img.shields.io/badge/python-3.13-blue?style=flat&logo=python&logoColor=FFD43B) 
+![Python](https://img.shields.io/badge/python-3.13-4584B6?style=flat&logo=python&logoColor=FFDE57) 
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-Machine_Learning-F7931E?style=flat&logo=scikitlearn&logoColor=white) 
 ![Dictionary Learning](https://img.shields.io/badge/dictionary_learning-Sparse%20Coding%20%7C%20K--SVD-8A2BE2?style=flat&logo=python&logoColor=white) 
 ![PyTorch](https://img.shields.io/badge/pytorch-Deep%20Learning-EE4C2C?style=flat&logo=pytorch&logoColor=white) 
-![ONNX Runtime](https://img.shields.io/badge/onnx-Runtime-005CED?style=flat&logo=onnx&logoColor=white) 
+![ONNX Runtime](https://img.shields.io/badge/onnx-Runtime-808080?style=flat&logo=onnx&logoColor=white) 
 ![PostgreSQL](https://img.shields.io/badge/postgresql-18-4169E1?style=flat&logo=postgresql&logoColor=white) 
-![pgvector](https://img.shields.io/badge/extension-PG_Vector-0F9D58?style=flat&logo=postgresql&logoColor=white) 
+![pgvector](https://img.shields.io/badge/extension-PG_Vector-336791?style=flat&logo=postgresql&logoColor=white) 
 ![Redis](https://img.shields.io/badge/redis-8%20(cache%20%26%20latence)-DC382D?style=flat&logo=redis&logoColor=white) 
-![Sécurité](https://img.shields.io/badge/sécurité-TLS%201.3%20%7C%20AES--256-232F3E?style=flat&logo=letsencrypt&logoColor=white)
+![Sécurité](https://img.shields.io/badge/sécurité-TLS%201.3%20%7C%20AES--256-003A70?style=flat&logo=letsencrypt&logoColor=white)
 
 ### **Conformité Réglementaire**  
+
+<sub><i>Obligations légales directement implémentées (AI Act, RGPD, CMF) et référentiels visés (ISO, ACPR, CNIL) — sans audit tiers à ce jour.</i></sub>
+
 ![AI Act](https://img.shields.io/badge/AI%20Act-UE%202024%2F1689-003399?style=flat&logo=europeancentralbank&logoColor=white) 
 ![RGPD](https://img.shields.io/badge/RGPD-Art.%2022-003399?style=flat&logo=europeancentralbank&logoColor=white) 
 ![CMF](https://img.shields.io/badge/CMF-L561--15-003399?style=flat) 
-![ISO](https://img.shields.io/badge/ISO%2FIEC-42001-lightgrey?style=flat) 
-![ACPR](https://img.shields.io/badge/ACPR-Conforme-green?style=flat) 
-![CNIL](https://img.shields.io/badge/CNIL-Conforme-green?style=flat)
+![ISO](https://img.shields.io/badge/ISO%2FIEC-Aligné_42001-003399?style=flat) ![ACPR](https://img.shields.io/badge/ACPR-Aligné-003399?style=flat) 
+![CNIL](https://img.shields.io/badge/CNIL-Aligné-003399?style=flat)
 
 </div>
 
@@ -37,12 +39,15 @@
 ## **⛔ Avertissement Légal (Propriété Intellectuelle)**
 **CE PROJET EST PROPRIÉTAIRE.** Toute reproduction, copie, modification, distribution ou ingénierie inverse, partielle ou totale, de ce code source ou de ses concepts architecturaux est formellement interdite sans autorisation écrite explicite de l'auteur. 
 Tout accès non autorisé fera l'objet de poursuites judiciaires immédiates.
-<!-- ## **📑 Table des Matières**
-1. [Architecture](#-architecture-&-stack-2026)
-2. [Conformité réglementaire](#-conformité-réglementaire)
-3. [Installation démarrage](#-installation-&-démarrage)
-4. [Structure du projet](#-structure-du-projet)
-5. [Fonctionnement du projet](#-fonctionnemnt-du-projet) -->
+## **📑 Table des Matières**
+1. [Architecture](#architecture-&-stack)
+2. [Conformité réglementaire](#conformité-réglementaire)
+3. [Installation démarrage](#installation-&-démarrage)
+4. [Structure du projet](#structure-du-projet)
+<!-- 5. [Fonctionnement du projet](#fonctionnemnt-du-projet) -->
+
+<a id="architecture-&-stack"></a>
+
 ## **🏗 Architecture & Stack<!-- 2026-->**
 Le projet repose sur une distinction stricte entre le Laboratoire (Recherche) et l'Usine (Production), utilisant les dernières versions LTS disponibles en 2026.
 1. Le Laboratoire (Data Science) 
@@ -56,6 +61,9 @@ Le projet repose sur une distinction stricte entre le Laboratoire (Recherche) et
 * Framework : Spring Boot 3.4+ (Support natif Java 25).
 * Base de Données : PostgreSQL 18.4 avec extension pgvector v0.8+ pour la recherche vectorielle de fraudes similaires.
 * Moteur d'Inférence : ONNX Runtime (Java API FFM variant).
+
+<a id="conformité-réglementaire"></a>
+
 ## **⚖️ Conformité Réglementaire**
 Le système est conçu pour naviguer dans le cadre légal strict de 2026.
 
@@ -65,6 +73,9 @@ AI Act (Annexe III) | Exception Fraude Financière : Le système est techniqueme
 RGPD Art. 22 | Human-in-the-Loop : Les décisions automatisées sont limitées aux scores faibles. Les scores élevés (>95) déclenchent une revue humaine obligatoire via l'interface Audit-UI.
 CMF L561-15 | Tracfin Ready : Génération automatique des pré-déclarations de soupçon incluant les facteurs explicatifs (SHAP values) pour justifier le signalement.
 ISO 42001 | AIMS Audit Trail : Journalisation cryptographique de chaque inférence (Input Hash + Model Version + Output) pour l'auditabilité post-mortem.
+
+<a id="installation-&-démarrage"></a>
+
 ## **🚀 Installation & démarrage**
 
 <details>
@@ -85,6 +96,8 @@ PostgreSQL 18.4
 Contrairement aux architectures Java 21 (2023), Linceul Audit n'a plus besoin de pools de threads dédiés ("Bulkhead") pour éviter le pinning JNI, grâce aux avancées de Java 25.
 **Intégration Panama (FFM)**
 J'utilise l'API Foreign Function & Memory (stable) pour appeler le moteur ONNX. Cela permet de passer des pointeurs mémoire off-heap directement de Java à C++ sans copie coûteuse et sans bloquer les Virtual Threads.
+
+<a id="structure-du-projet"></a>
 
 ## **📂 Structure du Projet**
 ```sh
