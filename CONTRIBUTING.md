@@ -1,11 +1,11 @@
 # **CONTRIBUTING** <a href="https://github.com/MiKL5/linceul-audit"><img src="assets/images/logo/linceul-audit-logo.webp" align="right" height="64"></a>
 <div align="center">
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?style=flat&logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org) 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-FE5196?style=flat&logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org) 
 [![GitFlow](https://img.shields.io/badge/Workflow-GitFlow%20Étendu-blue?style=flat&logo=git&logoColor=white)](docs/architecture) 
-[![Java](https://img.shields.io/badge/java-25%20LTS-orange?style=flat&logo=openjdk&logoColor=white)](https://openjdk.org) 
-[![Python](https://img.shields.io/badge/python-3.13-blue?style=flat&logo=python&logoColor=FFD43B)](https://python.org) 
-[![AI Act](https://img.shields.io/badge/AI%20Act-Compliant-003399?style=flat&logo=europeancentralbank&logoColor=white)](docs/compliance) 
+[![Java](https://img.shields.io/badge/java-25%20LTS-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://openjdk.org) 
+[![Python](https://img.shields.io/badge/python-3.13-3776AB?style=flat&logo=python&logoColor=FFD43B)](https://python.org) 
+[![AI Act](https://img.shields.io/badge/AI%20Act-Compliant-003399?style=flat&logo=europeanunion&logoColor=white)](docs/compliance) 
 [![Classification](https://img.shields.io/badge/Classification-CONFIDENTIEL%20%2F%20HAUTE%20CRITICITÉ-red?style=flat)](docs/spec)
 
 </div>
@@ -15,7 +15,6 @@
 > Le non-respect de ces règles peut entraîner le rejet immédiat d'une Pull Request et, dans les cas graves (fuite de secrets, contournement de conformité réglementaire), des conséquences juridiques.
 
 ---
-
 ## Table des matières
 
 1. [Prérequis](#1-prérequis)
@@ -313,7 +312,7 @@ ___
 
 <div align="center">
 
-[← Accueil](README.md) · [Documentation](docs/) · [Sécurité](SECURITY.md)
+[← Accueil](README.md) · [Documentation](docs/) · [Journal des prérequie](docs/PREREQUISITES-LOG.md) · [Sécurité](SECURITY.md)
 
 ___
 © 2026 - Projet Linceul Audit. Tous droits réservés.
