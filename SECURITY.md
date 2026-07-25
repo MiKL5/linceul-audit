@@ -130,11 +130,9 @@ Une fois le patch déployé sur `master`, la procédure de divulgation est la su
 4. **ACPR notifiée** si l'intégrité du système de détection de fraude a été compromise (CMF L561-15)
 
 <!-- ___
-
 ## Remerciements
 
 Les chercheurs en sécurité ayant contribué responsablement à améliorer la posture de sécurité du projet seront mentionnés ici avec leur accord explicite. -->
-
 ___
 
 <div align="center">
