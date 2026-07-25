@@ -1,0 +1,43 @@
+{
+    "default": true,
+    "MD004": {
+        "style": "sublist"
+    },
+    "MD007": {
+        "indent": 2
+    },
+    "MD013": {
+        "line_length": 180,
+        "code_blocks": false,
+        "tables": false,
+        "headings": false
+    },
+    "MD024": {
+        "siblings_only": true
+    },
+    "MD033": {
+        "allowed_elements": [
+            "details",
+            "summary",
+            "div",
+            "img",
+            "a",
+            "br",
+            "hr",
+            "kbd"
+        ]
+    },
+    "MD041": false,
+    "MD046": {
+        "style": "fenced"
+    },
+    "MD048": {
+        "style": "backtick"
+    },
+    "MD049": {
+        "style": "underscore"
+    },
+    "MD050": {
+        "style": "asterisk"
+    }
+}
