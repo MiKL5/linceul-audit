@@ -14,9 +14,7 @@
 > **Linceul Audit** est un système à **HAUTE CRITICITÉ** opérant sur des données financières sensibles.  
 > La sécurité est structurellement intégrée à l'architecture — elle n'est pas une fonctionnalité optionnelle.  
 > Ce document définit la politique de sécurité, la procédure de divulgation responsable et les engagements de réponse.
-
 ---
-
 ## Versions supportées
 Version | Supportée | Notes
 ---|---|---
@@ -111,11 +109,6 @@ Une fois le patch déployé sur `master`, la procédure de divulgation est la su
 2. **`CHANGELOG.md`** mis à jour avec une section `[Security]` détaillant la correction
 3. **DPO notifié** si des données personnelles ont pu être exposées — notification CNIL obligatoire sous **72 h** (RGPD Art. 33)
 4. **ACPR notifiée** si l'intégrité du système de détection de fraude a été compromise (CMF L561-15)
-
-<!-- ___
-## Remerciements
-
-Les chercheurs en sécurité ayant contribué responsablement à améliorer la posture de sécurité du projet seront mentionnés ici avec leur accord explicite. -->
 ___
 
 <div align="center">
